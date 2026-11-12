@@ -906,7 +906,7 @@
         }
 
         /* ═══════════════════════════════════════ */
-        /*       SALA DA DIRETORA (CARTA)          */
+        /*       SALA DA DIRETORA (LIVRO & CADEADO)*/
         /* ═══════════════════════════════════════ */
         .carta-bg {
             background:
@@ -915,39 +915,181 @@
             padding: 0;
         }
 
+        /* Locked Envelope / Chest */
+        .lock-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--paper);
+            border: 2px dashed var(--gold);
+            border-radius: 16px;
+            padding: 3em 1.5em;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.5s ease;
+        }
+
+        .lock-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.5em;
+            display: inline-block;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+            animation: gentleShake 3s infinite;
+        }
+
+        @keyframes gentleShake {
+            0%, 80%, 100% { transform: rotate(0deg); }
+            85% { transform: rotate(-8deg); }
+            95% { transform: rotate(8deg); }
+        }
+
+        .lock-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin-bottom: 0.5em;
+        }
+
+        .lock-desc {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 1.8em;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-unlock {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+            color: #fff;
+            border: none;
+            padding: 0.8em 2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(194, 24, 91, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6em;
+        }
+
+        .btn-unlock:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(194, 24, 91, 0.4);
+        }
+
+        .btn-unlock:active {
+            transform: scale(0.98);
+        }
+
+        /* Letters Book Container */
+        .book-container {
+            display: none;
+            max-width: 680px;
+            margin: 0 auto;
+            animation: bookOpen 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes bookOpen {
+            from { opacity: 0; transform: scale(0.92) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .book-controls-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+            padding: 0 0.5em;
+        }
+
+        .book-counter {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            color: var(--rose);
+            background: var(--paper);
+            padding: 0.3em 1em;
+            border-radius: 20px;
+            border: 1px solid var(--rose-light);
+        }
+
+        .book-relock {
+            background: transparent;
+            border: 1px solid #d4a017;
+            color: #b8860b;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.95rem;
+            padding: 0.4em 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .book-relock:hover {
+            background: var(--gold-light);
+        }
+
+        /* Carta / Livro */
         .carta {
             background: var(--paper);
             border: 1px solid #e0d5c5;
-            border-radius: 4px;
-            padding: 2em 1.5em;
+            border-radius: 8px;
+            padding: 2.2em 1.5em;
             box-shadow:
                 3px 3px 0 #f5f0e8,
                 3px 3px 0 1px #e0d5c5,
                 6px 6px 0 #f5f0e8,
-                6px 6px 0 1px #e0d5c5;
+                6px 6px 0 1px #e0d5c5,
+                9px 9px 0 #f5f0e8,
+                9px 9px 0 1px #e0d5c5;
             position: relative;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .carta::before {
-            content: '✉';
-            position: absolute;
-            top: -1.2em; right: 1.5em;
-            font-size: 1.8rem;
-            opacity: 0.3;
+        .carta-page {
+            display: none;
+            animation: pageTurn 0.5s ease both;
+        }
+
+        .carta-page.active-page {
+            display: block;
+        }
+
+        @keyframes pageTurn {
+            from { opacity: 0; transform: translateX(15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .carta-badge-tag {
+            display: inline-block;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.85rem;
+            background: var(--gold-light);
+            color: #b8860b;
+            border: 1px solid var(--gold);
+            padding: 0.2em 0.9em;
+            border-radius: 20px;
+            margin-bottom: 1em;
         }
 
         .carta .dear {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--rose);
-            margin-bottom: 1.2em;
+            margin-bottom: 1em;
         }
 
         .carta p {
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             line-height: 1.9;
             color: var(--ink-light);
-            margin-bottom: 0.8em;
+            margin-bottom: 0.9em;
             text-indent: 1.5em;
         }
 
@@ -955,7 +1097,7 @@
             text-align: right;
             margin-top: 1.5em;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--ink);
             line-height: 1.6;
         }
@@ -967,6 +1109,63 @@
             font-style: italic;
             color: var(--ink-light);
             margin-top: 0.2em;
+        }
+
+        /* Paginação / Folhear */
+        .book-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2em;
+            padding-top: 1.5em;
+            border-top: 1px dashed #e0d5c5;
+        }
+
+        .btn-page {
+            background: var(--paper);
+            border: 2px solid var(--rose-light);
+            color: var(--rose);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.05rem;
+            padding: 0.6em 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+        }
+
+        .btn-page:hover:not(:disabled) {
+            background: var(--rose);
+            color: #fff;
+            border-color: var(--rose);
+        }
+
+        .btn-page:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            border-color: #ddd;
+            color: #999;
+        }
+
+        .page-dots {
+            display: flex;
+            gap: 0.5em;
+        }
+
+        .page-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #e0d5c5;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-dot.active {
+            background: var(--rose);
+            transform: scale(1.3);
         }
 
         /* ═══════════════════════════════════════ */
@@ -1857,33 +2056,109 @@
         </section>
     </div>
 
-    <!-- ═══════════════ SALA DA DIRETORA (CARTA) ═══════════════ -->
+    <!-- ═══════════════ SALA DA DIRETORA (CARTAS SECRETAS) ═══════════════ -->
     <div class="carta-bg" id="diretora">
         <section>
             <div class="reveal">
-                <p class="section-label">Sala da Diretora</p>
-                <h2 class="section-title">Uma Carta <em>Só Pra Você</em></h2>
+                <p class="section-label">Sala da Diretora • Arquivo Confidencial</p>
+                <h2 class="section-title">O Livro de Cartas <em>Para Hannah</em></h2>
                 <div class="divider"></div>
 
-                <div class="carta">
-                    <p class="dear">Minha querida Hannah,</p>
+                <!-- CADEADO / ESTADO BLOQUEADO -->
+                <div class="lock-container" id="lock-screen">
+                    <div class="lock-icon" id="lock-icon-el" onclick="unlockLetters()">🔒</div>
+                    <h3 class="lock-title">Acesso Restrito: Somente para a Professora</h3>
+                    <p class="lock-desc">
+                        Esta pasta contém cartas e memórias seladas a sete chaves pelo participante masculino. 
+                        Apenas Hannah G. Cantonjos possui a chave deste coração.
+                    </p>
+                    <button class="btn-unlock" onclick="unlockLetters()">
+                        <span>🗝️</span> Abrir com a Chave do Amor
+                    </button>
+                </div>
 
-                    <p>Se você chegou até aqui, significa que leu tudo — cada sala, cada nota, cada palavra. E eu espero que você tenha sentido, em cada letra, o quanto você é importante pra mim.</p>
+                <!-- LIVRO DE CARTAS DESBLOQUEADO (FOLHEAR) -->
+                <div class="book-container" id="book-screen">
+                    <div class="book-controls-top">
+                        <span class="book-counter" id="page-counter">Carta 1 de 4</span>
+                        <button class="book-relock" onclick="lockLetters()" title="Trancar novamente">🔒 Trancar Pasta</button>
+                    </div>
 
-                    <p>Eu criei esse site inteiro porque eu queria que você soubesse: eu presto atenção. Quando você fez o P.A.G.E.S. pra mim, eu li cada página com o coração apertado de amor. E eu pensei: "Como é que alguém tão incrível me escolheu?"</p>
+                    <div class="carta">
+                        <!-- PÁGINA 1 -->
+                        <div class="carta-page active-page" data-page="0">
+                            <span class="carta-badge-tag">Carta 01 • O Começo de Tudo</span>
+                            <p class="dear">Minha querida Hannah,</p>
+                            <p>Se você abriu esta sala, significa que você teve a curiosidade de ver o que eu guardava com tanto carinho. E a verdade é que cada pedaço meu já te pertence.</p>
+                            <p>Eu criei esse espaço inteiro porque eu queria que você soubesse: eu presto atenção em tudo. Quando você fez o P.A.G.E.S. pra mim, eu li cada linha com o coração disparado. E a pergunta que não saía da minha cabeça era: "Como é que alguém tão incrível no mundo me escolheu?"</p>
+                            <p>Você é professora de profissão, ensina mentes brilhantes todos os dias. Mas comigo você fez algo muito maior: você me ensinou a amar de um jeito que eu achava que só existia em filme.</p>
+                            <div class="signature">
+                                Com todo o meu amor,<br>
+                                Seu Aluno Favorito ❤️
+                                <span>— O autor do Capítulo VII</span>
+                            </div>
+                        </div>
 
-                    <p>Você é professora. Você ensina crianças a ler, escrever, pensar. Mas comigo, você ensinou algo maior: você me ensinou a amar de um jeito que eu não sabia que existia. Um amor que atravessa oceanos, fusos horários, idiomas diferentes — e mesmo assim chega intacto, forte, verdadeiro.</p>
+                        <!-- PÁGINA 2 -->
+                        <div class="carta-page" data-page="1">
+                            <span class="carta-badge-tag">Carta 02 • Sobre a Distância e o Oceano</span>
+                            <p class="dear">Minha doce palangga,</p>
+                            <p>Às vezes olho para o relógio e calculo mentalmente quantas horas de diferença nos separam. Olho no mapa mundi e vejo um oceano inteiro entre o Brasil e as Filipinas. Mas quer saber de uma coisa? Nunca me senti tão perto de alguém.</p>
+                            <p>A distância pode impedir um abraço físico por enquanto, mas ela nunca teve o poder de diminuir o que sinto quando recebo uma mensagem sua de bom dia ou um áudio seu me chamando de "gwapo".</p>
+                            <p>Cada quilômetro entre nós não é uma barreira: é apenas a prova do tamanho do nosso amor, que não cabe em uma cidade só. Em breve não haverá mais tela de celular entre nós.</p>
+                            <div class="signature">
+                                Sempre pensando em você,<br>
+                                Kaynan ❤️
+                                <span>— Cruzando oceanos por você</span>
+                            </div>
+                        </div>
 
-                    <p>Esses 6 meses foram os mais bonitos da minha vida. E eu sei que os próximos vão ser ainda melhores, porque a cada dia eu descubro um motivo novo pra te amar mais.</p>
+                        <!-- PÁGINA 3 -->
+                        <div class="carta-page" data-page="2">
+                            <span class="carta-badge-tag">Carta 03 • Coisas Secretas que Eu Adoro em Você</span>
+                            <p class="dear">Minha razão dos melhores sorrisos,</p>
+                            <p>Eu guardo pequenos segredos sobre você que talvez nem você mesma note:</p>
+                            <p>• O jeito doce e paciente como você me ensina palavras em Minasbate, repetindo com calma até eu acertar a pronúncia.<br>
+                            • A paixão que brilha nos seus olhos quando você fala sobre a sua vocação de ensinar.<br>
+                            • A sua risada espontânea nas chamadas que tem o poder mágico de resetar qualquer dia cansativo meu.<br>
+                            • O seu coração protetor e de muita fé, que ora por nós e me faz querer ser um homem melhor a cada dia.</p>
+                            <p>Você é perfeita nos detalhes que ninguém mais vê.</p>
+                            <div class="signature">
+                                Seu admirador número 1,<br>
+                                Kaynan Monteiro ❤️
+                                <span>— Eterno aluno da Profa. Hannah</span>
+                            </div>
+                        </div>
 
-                    <p>Então, Profa. Hannah G. Cantonjos, futura Sra. Monteiro: obrigado por ser minha professora, minha parceira, minha melhor amiga, meu amor. Obrigado por cada "palangga ko ikaw", cada "mahal kita", cada sorriso na tela do celular.</p>
+                        <!-- PÁGINA 4 -->
+                        <div class="carta-page" data-page="3">
+                            <span class="carta-badge-tag">Carta 04 • Promessa para o Futuro</span>
+                            <p class="dear">Minha futura Sra. Monteiro,</p>
+                            <p>Esses 6 meses são apenas a introdução do nosso livro. O sumário de uma história muito longa que ainda vamos viver juntos lado a lado.</p>
+                            <p>Eu te prometo continuar me dedicando a você, respeitando os seus sonhos, aprendendo sua cultura e dividindo cada vitória com você. Prometo que no dia em que nos encontrarmos, eu vou te dar o abraço mais demorado da história deste planeta.</p>
+                            <p>Obrigado por ter entrado na minha vida e ter transformado meu mundo. Palangga ko ikaw, hoje, amanhã e em todos os próximos capítulos da nossa eternidade.</p>
+                            <div class="signature">
+                                Para sempre seu,<br>
+                                Kaynan ❤️
+                                <span>— Até depois do infinito</span>
+                            </div>
+                        </div>
 
-                    <p>Eu sou seu. Hoje, amanhã, e em todos os capítulos que ainda vamos escrever juntos.</p>
-
-                    <div class="signature">
-                        Com todo o meu amor,<br>
-                        Seu Aluno Favorito ❤️
-                        <span>— O autor do Capítulo VII</span>
+                        <!-- PAGINAÇÃO INTERATIVA / FOLHEAR -->
+                        <div class="book-pagination">
+                            <button class="btn-page" id="btn-prev-page" onclick="prevLetterPage()" disabled>
+                                <span>←</span> Anterior
+                            </button>
+                            <div class="page-dots" id="book-page-dots">
+                                <span class="page-dot active" onclick="goToLetterPage(0)"></span>
+                                <span class="page-dot" onclick="goToLetterPage(1)"></span>
+                                <span class="page-dot" onclick="goToLetterPage(2)"></span>
+                                <span class="page-dot" onclick="goToLetterPage(3)"></span>
+                            </div>
+                            <button class="btn-page" id="btn-next-page" onclick="nextLetterPage()">
+                                Próxima <span>→</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2067,6 +2342,88 @@
                     container.appendChild(heart);
                     setTimeout(() => heart.remove(), 15000);
                 }, i * 120);
+            }
+        }
+
+        // ──── SALA DA DIRETORA: CADEADO & LIVRO DE CARTAS ────
+        let currentLetterPage = 0;
+        const totalLetterPages = 4;
+
+        function unlockLetters() {
+            const lockIcon = document.getElementById('lock-icon-el');
+            lockIcon.textContent = '🔓';
+            lockIcon.style.transform = 'scale(1.2) rotate(15deg)';
+            
+            setTimeout(() => {
+                document.getElementById('lock-screen').style.display = 'none';
+                document.getElementById('book-screen').style.display = 'block';
+                updateLetterBookView();
+                celebrationBurst();
+                document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 600);
+        }
+
+        function lockLetters() {
+            document.getElementById('book-screen').style.display = 'none';
+            const lockScreen = document.getElementById('lock-screen');
+            lockScreen.style.display = 'block';
+            const lockIcon = document.getElementById('lock-icon-el');
+            lockIcon.textContent = '🔒';
+            lockIcon.style.transform = 'scale(1) rotate(0deg)';
+            currentLetterPage = 0;
+            updateLetterBookView();
+            document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function updateLetterBookView() {
+            const pages = document.querySelectorAll('.carta-page');
+            const dots = document.querySelectorAll('.page-dot');
+            const counter = document.getElementById('page-counter');
+            const prevBtn = document.getElementById('btn-prev-page');
+            const nextBtn = document.getElementById('btn-next-page');
+
+            pages.forEach((page, idx) => {
+                if (idx === currentLetterPage) {
+                    page.classList.add('active-page');
+                } else {
+                    page.classList.remove('active-page');
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                if (idx === currentLetterPage) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            if (counter) {
+                counter.textContent = `Carta ${currentLetterPage + 1} de ${totalLetterPages}`;
+            }
+
+            if (prevBtn) prevBtn.disabled = (currentLetterPage === 0);
+            if (nextBtn) nextBtn.disabled = (currentLetterPage === totalLetterPages - 1);
+        }
+
+        function nextLetterPage() {
+            if (currentLetterPage < totalLetterPages - 1) {
+                currentLetterPage++;
+                updateLetterBookView();
+            }
+        }
+
+        function prevLetterPage() {
+            if (currentLetterPage > 0) {
+                currentLetterPage--;
+                updateLetterBookView();
+            }
+        }
+
+        function goToLetterPage(index) {
+            if (index >= 0 && index < totalLetterPages) {
+                currentLetterPage = index;
+                updateLetterBookView();
             }
         }
     </script>

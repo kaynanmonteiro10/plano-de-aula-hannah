@@ -948,8 +948,176 @@
         }
 
         /* ═══════════════════════════════════════ */
-        /*       SALA DA DIRETORA (LIVRO REALISTA 3D) */
+        /*    TELA DE BUQUÊS GIGANTES & PALAVRAS   */
         /* ═══════════════════════════════════════ */
+        .buques-section {
+            background: linear-gradient(180deg, #fff7f9 0%, #fff0f3 50%, #fdf6ec 100%);
+            padding: 5em 1.2em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buques-intro {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3em;
+        }
+
+        .buques-intro p {
+            font-size: 1.05rem;
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        .buques-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 5em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .monumental-bouquet-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid #f1dfd5;
+            border-radius: 24px;
+            padding: 2.5em 1.5em;
+            box-shadow: 0 15px 45px rgba(194, 24, 91, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .monumental-bouquet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(194, 24, 91, 0.12);
+        }
+
+        .monumental-bouquet-stage {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto 1.5em;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+            animation: bouquetFloat 5s ease-in-out infinite;
+        }
+
+        .monumental-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Tag e Título do Buquê */
+        .bouquet-tag {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.9rem;
+            background: var(--gold-light);
+            color: #b8860b;
+            border: 1px solid var(--gold);
+            padding: 0.3em 1.2em;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            margin-bottom: 0.8em;
+            display: inline-block;
+        }
+
+        .bouquet-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--ink);
+            margin-bottom: 0.4em;
+        }
+
+        .bouquet-subtext {
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink-light);
+            margin-bottom: 1.8em;
+        }
+
+        /* Área de Palavras Escondidas (Interativa) */
+        .hidden-revelation-box {
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .revelation-envelope {
+            background: linear-gradient(135deg, #fdf6ec, #ffffff);
+            border: 2px dashed var(--rose-light);
+            border-radius: 16px;
+            padding: 1.5em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .revelation-envelope:hover {
+            border-color: var(--rose);
+            background: #fffbfa;
+            transform: scale(1.02);
+        }
+
+        .revelation-prompt {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.15rem;
+            color: var(--rose);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+        }
+
+        .secret-words-content {
+            display: none;
+            text-align: left;
+            margin-top: 1.2em;
+            padding-top: 1.2em;
+            border-top: 1px dashed #e8d0d5;
+            animation: fadeInWords 0.6s ease forwards;
+        }
+
+        .revelation-envelope.revealed .secret-words-content {
+            display: block;
+        }
+
+        .revelation-envelope.revealed .revelation-prompt span:first-child {
+            display: none;
+        }
+
+        @keyframes fadeInWords {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .secret-quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--rose);
+            line-height: 1.5;
+            margin-bottom: 0.8em;
+            text-align: center;
+        }
+
+        .secret-body {
+            font-size: 0.96rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+            text-indent: 1.5em;
+        }
+
+        .secret-signature {
+            text-align: right;
+            margin-top: 1em;
+            font-family: 'Patrick Hand', cursive;
+            color: #b8860b;
+            font-size: 1.1rem;
+        }
         .carta-bg {
             background:
                 radial-gradient(ellipse at 50% 0%, rgba(212,160,23,0.08), transparent 60%),
@@ -1623,6 +1791,7 @@
                 <li><a href="#dicionario">Dicionário</a></li>
                 <li><a href="#caderneta">Notas</a></li>
                 <li><a href="#prova">Prova</a></li>
+                <li><a href="#jardim-buques">Buquês</a></li>
                 <li><a href="#diretora">Carta</a></li>
             </ul>
         </div>
@@ -1907,17 +2076,6 @@
                     <div class="dict-def">
                         <p><span class="meaning">s. Amor, querido(a), a pessoa mais amada.</span></p>
                         <p class="memory">💛 "A palavra mais linda que você já me apresentou. Palangga ko ikaw, sempre."</p>
-                    </div>
-                </div>
-
-                <div class="dict-entry">
-                    <div class="dict-word">
-                        <h3>Gwapo</h3>
-                        <span class="pron">/gwa·po/</span>
-                    </div>
-                    <div class="dict-def">
-                        <p><span class="meaning">adj. Bonito, lindo (masculino).</span></p>
-                        <p class="memory">💛 "Quando você me chama de gwapo, eu fico sem jeito. Mas a mais gwapa do mundo é você, Hannah."</p>
                     </div>
                 </div>
 
@@ -2397,7 +2555,204 @@
         </section>
     </div>
 
-    <!-- ═══════════════ SALA DA DIRETORA (CARTAS SECRETAS) ═══════════════ -->
+    <!-- ═══════════════ TELA DOS BUQUÊS GIGANTES & PALAVRAS SECRETAS ═══════════════ -->
+    <div class="buques-section" id="jardim-buques">
+        <section>
+            <div class="reveal">
+                <div class="buques-intro">
+                    <p class="section-label">Jardim Imperial de Flores Eternas</p>
+                    <h2 class="section-title">Buquês Gigantes <em>Feitos para Você</em></h2>
+                    <div class="divider" style="margin: 0 auto 1.5em auto;"></div>
+                    <p>
+                        Você merece mais do que simples palavras. Cada grande arranjo botânico abaixo foi desenhado nos mínimos detalhes e guarda uma mensagem secreta que só se revela quando você toca no laço.
+                    </p>
+                </div>
+
+                <div class="buques-showcase">
+                    
+                    <!-- ════ BUQUÊ 1: AS ROSAS VERMELHAS DA PAIXÃO & CORAGEM ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 01 • Rosas Escarlate & Vinho Velvet</span>
+                        <h3 class="bouquet-headline">O Buquê da Nossa Certeza</h3>
+                        <p class="bouquet-subtext">Composto por rosas vermelhas de veludo, eucaliptos perfumados e fita de cetim real</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="bqGlow1" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#880e4f" flood-opacity="0.3"/>
+                                    </filter>
+                                    <filter id="bqShadow1" x="-10%" y="-10%" width="120%" height="120%">
+                                        <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b3529" flood-opacity="0.35"/>
+                                    </filter>
+                                    <linearGradient id="bqLeaf1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#4e7d62"/><stop offset="100%" stop-color="#1e3a2b"/>
+                                    </linearGradient>
+                                    <linearGradient id="bqEuc1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8fa89b"/><stop offset="100%" stop-color="#466657"/>
+                                    </linearGradient>
+                                    <radialGradient id="bqRoseDeep1" cx="40%" cy="40%" r="60%">
+                                        <stop offset="0%" stop-color="#ff4081"/><stop offset="35%" stop-color="#d81b60"/><stop offset="70%" stop-color="#ad1457"/><stop offset="100%" stop-color="#4a0020"/>
+                                    </radialGradient>
+                                    <radialGradient id="bqRoseVelvet1" cx="45%" cy="35%" r="65%">
+                                        <stop offset="0%" stop-color="#e91e63"/><stop offset="40%" stop-color="#c2185b"/><stop offset="80%" stop-color="#880e4f"/><stop offset="100%" stop-color="#3b0018"/>
+                                    </radialGradient>
+                                    <linearGradient id="bqPaperWrap1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#f5e6d3"/><stop offset="40%" stop-color="#ebd8c3"/><stop offset="100%" stop-color="#c9ad8b"/>
+                                    </linearGradient>
+                                    <linearGradient id="bqPaperInner1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#2c4a3e"/><stop offset="100%" stop-color="#14261e"/>
+                                    </linearGradient>
+                                    <linearGradient id="bqRibbonGold1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#e6b800"/><stop offset="40%" stop-color="#ffe082"/><stop offset="70%" stop-color="#d4a017"/><stop offset="100%" stop-color="#806000"/>
+                                    </linearGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="url(#bqPaperInner1)"/>
+                                </g>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M130 170 C80 110 60 70 40 50 C70 70 110 110 140 180 Z" fill="url(#bqEuc1)"/>
+                                    <circle cx="70" cy="80" r="16" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <circle cx="95" cy="110" r="19" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <circle cx="120" cy="145" r="22" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <path d="M370 170 C420 110 440 70 460 50 C430 70 390 110 360 180 Z" fill="url(#bqEuc1)"/>
+                                    <circle cx="430" cy="80" r="16" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <circle cx="405" cy="110" r="19" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <circle cx="380" cy="145" r="22" fill="url(#bqEuc1)" opacity="0.95"/>
+                                    <path d="M220 130 C210 50 220 10 250 0 C280 10 290 50 280 130 Z" fill="url(#bqLeaf1)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <g transform="translate(130, 100)"><circle cx="42" cy="42" r="40" fill="url(#bqRoseDeep1)"/><circle cx="42" cy="40" r="16" fill="#ff4081"/><circle cx="42" cy="40" r="8" fill="#ffffff" opacity="0.6"/></g>
+                                    <g transform="translate(250, 100)"><circle cx="42" cy="42" r="40" fill="url(#bqRoseVelvet1)"/><circle cx="42" cy="40" r="16" fill="#ff4081"/><circle cx="42" cy="40" r="8" fill="#ffffff" opacity="0.6"/></g>
+                                    <g transform="translate(190, 70)"><circle cx="60" cy="60" r="56" fill="url(#bqRoseVelvet1)"/><path d="M20 50 C10 20 50 10 80 15 C110 20 120 55 105 90 C90 115 40 115 20 90 Z" fill="#660024" opacity="0.6"/><circle cx="60" cy="54" r="20" fill="#ff4081"/><circle cx="60" cy="54" r="9" fill="#ffffff" opacity="0.8"/></g>
+                                    <g transform="translate(100, 175)"><circle cx="50" cy="50" r="48" fill="url(#bqRoseDeep1)"/><circle cx="50" cy="48" r="18" fill="#ff4081"/><circle cx="50" cy="48" r="8" fill="#ffffff" opacity="0.6"/></g>
+                                    <g transform="translate(280, 175)"><circle cx="50" cy="50" r="48" fill="url(#bqRoseVelvet1)"/><circle cx="50" cy="48" r="18" fill="#ff4081"/><circle cx="50" cy="48" r="8" fill="#ffffff" opacity="0.6"/></g>
+                                    <g transform="translate(190, 175)"><circle cx="55" cy="55" r="52" fill="url(#bqRoseDeep1)"/><circle cx="55" cy="50" r="22" fill="#ff4081"/><circle cx="55" cy="50" r="10" fill="#ffffff"/></g>
+                                    <g transform="translate(145, 255)"><circle cx="40" cy="40" r="38" fill="url(#bqRoseVelvet1)"/><circle cx="40" cy="38" r="14" fill="#ff4081"/></g>
+                                    <g transform="translate(255, 255)"><circle cx="40" cy="40" r="38" fill="url(#bqRoseDeep1)"/><circle cx="40" cy="38" r="14" fill="#ff4081"/></g>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperWrap1)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M250 432 C210 395 180 430 230 450 C245 455 250 445 250 432 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M250 432 C290 395 320 430 270 450 C255 455 250 445 250 432 Z" fill="url(#bqRibbonGold1)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#ffe082"/><ellipse cx="250" cy="435" rx="10" ry="8" fill="url(#bqRibbonGold1)"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Palavras Ocultas no Laço -->
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita dourada e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"Nem todo o oceano Pacífico é capaz de apagar o fogo do que eu sinto por você."</div>
+                                    <p class="secret-body">
+                                        Hannah, essas rosas vermelhas representam a intensidade da minha decisão. Amar você nunca foi uma dúvida passageira, foi uma escolha consciente que eu renovo todas as manhãs. Quando você sorri pra mim através da tela, todo o cansaço do meu dia desaparece em um segundo. Você é a minha paz e a minha maior certeza.
+                                    </p>
+                                    <div class="secret-signature">— Seu participante masculino apaixonado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ════ BUQUÊ 2: ROSAS BRANCAS, CHAMPAGNE & ROSA CHÁ (PUREZA & PAZ) ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 02 • Rosas Brancas, Pêssego & Champagne Real</span>
+                        <h3 class="bouquet-headline">O Buquê da Doçura & Devoção</h3>
+                        <p class="bouquet-subtext">Flores nobres em tons pastéis com mosquitinhos brancos e fita de seda rose gold</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="bqGlow2" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#ad1457" flood-opacity="0.2"/>
+                                    </filter>
+                                    <radialGradient id="bqRoseWhite" cx="40%" cy="35%" r="65%">
+                                        <stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#fff9f5"/><stop offset="80%" stop-color="#f8bbd0"/><stop offset="100%" stop-color="#e092a8"/>
+                                    </radialGradient>
+                                    <radialGradient id="bqRosePeach" cx="45%" cy="35%" r="65%">
+                                        <stop offset="0%" stop-color="#ffffff"/><stop offset="35%" stop-color="#ffe0b2"/><stop offset="75%" stop-color="#f48fb1"/><stop offset="100%" stop-color="#ad1457"/>
+                                    </radialGradient>
+                                    <linearGradient id="bqPaperPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#fce4ec"/><stop offset="100%" stop-color="#f8bbd0"/>
+                                    </linearGradient>
+                                    <linearGradient id="bqRibbonRose" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#c2185b"/><stop offset="50%" stop-color="#f48fb1"/><stop offset="100%" stop-color="#880e4f"/>
+                                    </linearGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="#2c4a3e"/>
+                                </g>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M130 170 C80 110 60 70 40 50 C70 70 110 110 140 180 Z" fill="#6d8b74"/>
+                                    <circle cx="70" cy="80" r="16" fill="#8fa89b"/><circle cx="95" cy="110" r="19" fill="#8fa89b"/><circle cx="120" cy="145" r="22" fill="#8fa89b"/>
+                                    <path d="M370 170 C420 110 440 70 460 50 C430 70 390 110 360 180 Z" fill="#6d8b74"/>
+                                    <circle cx="430" cy="80" r="16" fill="#8fa89b"/><circle cx="405" cy="110" r="19" fill="#8fa89b"/><circle cx="380" cy="145" r="22" fill="#8fa89b"/>
+                                </g>
+                                <g filter="url(#bqGlow2)">
+                                    <g transform="translate(130, 100)"><circle cx="42" cy="42" r="40" fill="url(#bqRosePeach)"/><circle cx="42" cy="40" r="16" fill="#f8bbd0"/><circle cx="42" cy="40" r="8" fill="#ffffff"/></g>
+                                    <g transform="translate(250, 100)"><circle cx="42" cy="42" r="40" fill="url(#bqRoseWhite)"/><circle cx="42" cy="40" r="16" fill="#fce4ec"/><circle cx="42" cy="40" r="8" fill="#ffffff"/></g>
+                                    <g transform="translate(190, 70)"><circle cx="60" cy="60" r="56" fill="url(#bqRoseWhite)"/><circle cx="60" cy="54" r="22" fill="#f8bbd0"/><circle cx="60" cy="54" r="10" fill="#ffffff"/></g>
+                                    <g transform="translate(100, 175)"><circle cx="50" cy="50" r="48" fill="url(#bqRosePeach)"/><circle cx="50" cy="48" r="18" fill="#f48fb1"/><circle cx="50" cy="48" r="8" fill="#ffffff"/></g>
+                                    <g transform="translate(280, 175)"><circle cx="50" cy="50" r="48" fill="url(#bqRoseWhite)"/><circle cx="50" cy="48" r="18" fill="#f8bbd0"/><circle cx="50" cy="48" r="8" fill="#ffffff"/></g>
+                                    <g transform="translate(190, 175)"><circle cx="55" cy="55" r="52" fill="url(#bqRosePeach)"/><circle cx="55" cy="50" r="22" fill="#f48fb1"/><circle cx="55" cy="50" r="10" fill="#ffffff"/></g>
+                                    <g transform="translate(145, 255)"><circle cx="40" cy="40" r="38" fill="url(#bqRoseWhite)"/><circle cx="40" cy="38" r="14" fill="#ffffff"/></g>
+                                    <g transform="translate(255, 255)"><circle cx="40" cy="40" r="38" fill="url(#bqRosePeach)"/><circle cx="40" cy="38" r="14" fill="#fce4ec"/></g>
+                                    <!-- Gypsophila espalhada -->
+                                    <g fill="#ffffff"><circle cx="115" cy="130" r="4.5"/><circle cx="125" cy="120" r="3.5"/><circle cx="380" cy="130" r="4.5"/><circle cx="365" cy="120" r="3.5"/><circle cx="200" cy="70" r="4"/><circle cx="300" cy="70" r="4"/></g>
+                                </g>
+                                <g filter="url(#bqGlow2)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperPink)"/>
+                                </g>
+                                <g filter="url(#bqGlow2)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M250 432 C210 395 180 430 230 450 C245 455 250 445 250 432 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M250 432 C290 395 320 430 270 450 C255 455 250 445 250 432 Z" fill="url(#bqRibbonRose)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#f8bbd0"/><ellipse cx="250" cy="435" rx="10" ry="8" fill="url(#bqRibbonRose)"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Palavras Ocultas no Laço -->
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita rose e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"O que eu mais admiro em você é a pureza do seu coração e a nobreza com que você ensina."</div>
+                                    <p class="secret-body">
+                                        Hannah, você é daquelas pessoas raras que iluminam tudo ao redor sem precisar fazer esforço. Ver a sua dedicação com as crianças, o seu respeito pela sua família e a sua fé em Deus me enche de orgulho. Eu não vejo a hora de estar ao seu lado nas Filipinas e no Brasil, admirando de perto essa mulher tão doce e especial que Deus me deu de presente.
+                                    </p>
+                                    <div class="secret-signature">— De quem mais tem orgulho de você no mundo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
     <div class="carta-bg" id="diretora">
         <section>
             <div class="reveal">
@@ -2456,7 +2811,7 @@
                             <span class="carta-badge-tag">Página 02 • O Oceano, as Horas e a Certeza</span>
                             <p class="dear">Minha linda palangga,</p>
                             <p>Eu não vou fingir que a distância é fácil ou que não sinto um aperto no peito toda vez que nos despedimos em uma chamada de vídeo. Olhar o fuso horário e saber que enquanto eu estou no meio do dia você já está se preparando para descansar mexe comigo. Ver que existe um mapa gigante e milhares de quilômetros de oceano nos separando poderia assustar qualquer um.</p>
-                            <p>Mas sabe por que nada disso me faz vacilar nem por um segundo? Porque a intensidade do que a gente construiu é infinitamente maior do que qualquer distância física. Quando eu escuto a sua voz, quando você me manda uma foto sorrindo ou quando você me chama de "gwapo", parece que você está do meu lado, me olhando nos olhos.</p>
+                            <p>Mas sabe por que nada disso me faz vacilar nem por um segundo? Porque a intensidade do que a gente construiu é infinitamente maior do que qualquer distância física. Quando eu escuto a sua voz, quando você me manda uma foto sorrindo ou quando você me dá aquele olhar tímido e carinhoso na chamada, parece que você está bem aqui do meu lado, segurando a minha mão.</p>
                             <p>Eu sei que você ainda está começando a me ensinar sobre a sua terra, sobre o seu idioma e sobre o seu mundo em Masbate. E eu tenho um orgulho imenso de cada pequena coisa que você compartilha comigo. Eu não tenho pressa de nada, porque aprender com você — passo a passo, palavra por palavra — é a matéria mais bonita da minha vida.</p>
                             <div class="signature">
                                 Sempre seu aluno curioso,<br>
@@ -2691,6 +3046,14 @@
                     container.appendChild(heart);
                     setTimeout(() => heart.remove(), 15000);
                 }, i * 120);
+            }
+        }
+
+        // ──── REVELAÇÃO DAS PALAVRAS SECRETAS DOS BUQUÊS ────
+        function toggleSecretWords(element) {
+            element.classList.toggle('revealed');
+            if (element.classList.contains('revealed')) {
+                celebrationBurst();
             }
         }
 

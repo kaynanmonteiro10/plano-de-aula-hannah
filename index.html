@@ -906,6 +906,48 @@
         }
 
         /* ═══════════════════════════════════════ */
+        /*       BUQUÊ GIGANTE LUXUOSO VETORIAL    */
+        /* ═══════════════════════════════════════ */
+        .bouquet-stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5em auto 2em;
+            perspective: 1000px;
+        }
+
+        .giant-bouquet-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            animation: bouquetFloat 4s ease-in-out infinite, bouquetReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+            transform-origin: center bottom;
+        }
+
+        @keyframes bouquetReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(50px) rotate(-6deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes bouquetFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1.5deg); }
+        }
+
+        .giant-bouquet-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            overflow: visible;
+        }
+
+        /* ═══════════════════════════════════════ */
         /*       SALA DA DIRETORA (LIVRO REALISTA 3D) */
         /* ═══════════════════════════════════════ */
         .carta-bg {
@@ -1047,6 +1089,39 @@
             padding: 1.5em;
             overflow: hidden;
             touch-action: pan-y;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .realistic-book:active {
+            cursor: grabbing;
+        }
+
+        /* Banner de Instrução Gestual */
+        .gesture-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.95rem;
+            color: #b8860b;
+            background: rgba(255, 248, 225, 0.7);
+            border: 1px solid rgba(212, 160, 23, 0.25);
+            padding: 0.5em 1em;
+            border-radius: 30px;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .gesture-hint .hand-icon {
+            display: inline-block;
+            animation: handWave 2s ease-in-out infinite;
+        }
+
+        @keyframes handWave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
         }
 
         /* Lombada do Livro (Spine) */
@@ -2099,11 +2174,218 @@
                     </div>
 
                     <div id="quiz-result">
-                        <div class="big-heart">💖</div>
-                        <h2>Você Passou!</h2>
+                        <div class="bouquet-stage">
+                            <!-- BUQUÊ GIGANTE VETORIAL ESTILIZADO -->
+                            <div class="giant-bouquet-wrapper">
+                                <svg class="giant-bouquet-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Sombras e Filtros -->
+                                        <filter id="bloomGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#880e4f" flood-opacity="0.25"/>
+                                        </filter>
+                                        <filter id="leafShadow" x="-10%" y="-10%" width="120%" height="120%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b3529" flood-opacity="0.3"/>
+                                        </filter>
+
+                                        <!-- Gradientes Folhagens -->
+                                        <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#4e7d62"/>
+                                            <stop offset="100%" stop-color="#1e3a2b"/>
+                                        </linearGradient>
+                                        <linearGradient id="leafGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#2d5a42"/>
+                                            <stop offset="100%" stop-color="#5c9373"/>
+                                        </linearGradient>
+                                        <linearGradient id="eucalyptus" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#8fa89b"/>
+                                            <stop offset="100%" stop-color="#466657"/>
+                                        </linearGradient>
+
+                                        <!-- Gradientes Rosas Vermelhas e Vinho -->
+                                        <radialGradient id="roseRedDeep" cx="40%" cy="40%" r="60%">
+                                            <stop offset="0%" stop-color="#ff4081"/>
+                                            <stop offset="35%" stop-color="#d81b60"/>
+                                            <stop offset="70%" stop-color="#ad1457"/>
+                                            <stop offset="100%" stop-color="#560027"/>
+                                        </radialGradient>
+                                        <radialGradient id="roseRedVelvet" cx="45%" cy="35%" r="65%">
+                                            <stop offset="0%" stop-color="#e91e63"/>
+                                            <stop offset="40%" stop-color="#c2185b"/>
+                                            <stop offset="80%" stop-color="#880e4f"/>
+                                            <stop offset="100%" stop-color="#4a0020"/>
+                                        </radialGradient>
+
+                                        <!-- Gradientes Rosas Chá e Rosa Bebê -->
+                                        <radialGradient id="roseSoftPink" cx="40%" cy="40%" r="60%">
+                                            <stop offset="0%" stop-color="#ffffff"/>
+                                            <stop offset="30%" stop-color="#f8bbd0"/>
+                                            <stop offset="70%" stop-color="#f06292"/>
+                                            <stop offset="100%" stop-color="#ad1457"/>
+                                        </radialGradient>
+                                        <radialGradient id="roseChampagne" cx="40%" cy="35%" r="65%">
+                                            <stop offset="0%" stop-color="#fffde7"/>
+                                            <stop offset="40%" stop-color="#ffe0b2"/>
+                                            <stop offset="80%" stop-color="#f48fb1"/>
+                                            <stop offset="100%" stop-color="#c2185b"/>
+                                        </radialGradient>
+
+                                        <!-- Embalagem de Luxo / Papel Kraft & Verde Imperial -->
+                                        <linearGradient id="paperWrapOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#f7ede2"/>
+                                            <stop offset="40%" stop-color="#ebd8c3"/>
+                                            <stop offset="100%" stop-color="#cfb698"/>
+                                        </linearGradient>
+                                        <linearGradient id="paperWrapInner" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#2c4a3e"/>
+                                            <stop offset="50%" stop-color="#1b3529"/>
+                                            <stop offset="100%" stop-color="#11221a"/>
+                                        </linearGradient>
+                                        <linearGradient id="ribbonSilk" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#e6b800"/>
+                                            <stop offset="35%" stop-color="#ffe082"/>
+                                            <stop offset="70%" stop-color="#d4a017"/>
+                                            <stop offset="100%" stop-color="#997300"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- ════ CAMADA 1: EMBALAGEM TRASEIRA ════ -->
+                                    <g filter="url(#leafShadow)">
+                                        <path d="M120 220 L250 540 L50 260 L90 190 Z" fill="url(#paperWrapOuter)"/>
+                                        <path d="M380 220 L250 540 L450 260 L410 190 Z" fill="url(#paperWrapOuter)"/>
+                                        <path d="M100 210 L250 550 L400 210 L350 140 L150 140 Z" fill="url(#paperWrapInner)"/>
+                                    </g>
+
+                                    <!-- ════ CAMADA 2: FOLHAGENS E EUCALIPTO ════ -->
+                                    <g filter="url(#leafShadow)">
+                                        <!-- Ramos esquerdos -->
+                                        <path d="M140 180 C90 120 70 80 50 60 C80 80 120 120 150 190 Z" fill="url(#eucalyptus)"/>
+                                        <circle cx="80" cy="90" r="16" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <circle cx="105" cy="120" r="19" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <circle cx="130" cy="155" r="22" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <path d="M170 170 C120 90 90 40 80 20 C110 50 150 100 180 180 Z" fill="url(#leafGrad1)"/>
+
+                                        <!-- Ramos direitos -->
+                                        <path d="M360 180 C410 120 430 80 450 60 C420 80 380 120 350 190 Z" fill="url(#eucalyptus)"/>
+                                        <circle cx="420" cy="90" r="16" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <circle cx="395" cy="120" r="19" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <circle cx="370" cy="155" r="22" fill="url(#eucalyptus)" opacity="0.9"/>
+                                        <path d="M330 170 C380 90 410 40 420 20 C390 50 350 100 320 180 Z" fill="url(#leafGrad2)"/>
+
+                                        <!-- Folhas de topo -->
+                                        <path d="M220 140 C210 60 220 20 250 0 C280 20 290 60 280 140 Z" fill="url(#leafGrad1)"/>
+                                        <path d="M180 150 C150 80 170 40 200 20 C210 60 200 110 190 160 Z" fill="url(#leafGrad2)"/>
+                                        <path d="M320 150 C350 80 330 40 300 20 C290 60 300 110 310 160 Z" fill="url(#leafGrad1)"/>
+                                    </g>
+
+                                    <!-- ════ CAMADA 3: O GRANDE BUQUÊ DE ROSAS ESCULPIDAS ════ -->
+                                    <g filter="url(#bloomGlow)">
+                                        <!-- ROSA 1: Topo Esquerda (Vinho Suave) -->
+                                        <g transform="translate(140, 110)">
+                                            <circle cx="40" cy="40" r="38" fill="url(#roseRedDeep)"/>
+                                            <path d="M20 35 C15 15 50 10 60 25 C70 40 55 60 40 60 C25 60 15 50 20 35 Z" fill="#9c1048" opacity="0.6"/>
+                                            <path d="M28 32 C32 20 50 22 52 30 C54 42 35 48 28 32 Z" fill="url(#roseRedVelvet)"/>
+                                            <path d="M34 30 C36 24 45 25 46 29 C48 36 38 39 34 30 Z" fill="#ff4081"/>
+                                        </g>
+
+                                        <!-- ROSA 2: Topo Direita (Rosa Champagne) -->
+                                        <g transform="translate(260, 110)">
+                                            <circle cx="40" cy="40" r="38" fill="url(#roseChampagne)"/>
+                                            <path d="M22 35 C18 15 55 12 62 26 C72 42 55 62 38 60 C24 58 18 48 22 35 Z" fill="#ad1457" opacity="0.4"/>
+                                            <path d="M29 32 C33 22 49 23 52 32 C53 42 36 46 29 32 Z" fill="url(#roseSoftPink)"/>
+                                            <path d="M35 31 C38 25 45 26 46 30 C47 36 38 38 35 31 Z" fill="#ffffff"/>
+                                        </g>
+
+                                        <!-- ROSA 3: Centro Superior (A Grande Rosa Vermelha Real) -->
+                                        <g transform="translate(195, 80)">
+                                            <circle cx="55" cy="55" r="52" fill="url(#roseRedVelvet)"/>
+                                            <path d="M15 50 C5 25 40 5 70 10 C100 15 110 50 95 85 C80 110 35 110 15 85 C5 70 10 60 15 50 Z" fill="#750637" opacity="0.65"/>
+                                            <path d="M25 45 C20 28 50 18 75 22 C95 28 98 60 85 80 C70 98 38 95 28 78 Z" fill="url(#roseRedDeep)"/>
+                                            <path d="M38 42 C35 30 60 25 75 32 C88 40 85 68 70 75 C52 82 40 68 38 42 Z" fill="#c2185b"/>
+                                            <path d="M48 44 C45 36 62 34 68 40 C75 48 70 62 58 64 C48 64 45 54 48 44 Z" fill="url(#roseRedVelvet)"/>
+                                            <circle cx="56" cy="48" r="8" fill="#ff4081"/>
+                                            <path d="M54 46 C55 42 60 42 61 46 C61 50 56 50 54 46 Z" fill="#ffffff" opacity="0.7"/>
+                                        </g>
+
+                                        <!-- ROSA 4: Centro Esquerda (Rosa Intensa Aveludada) -->
+                                        <g transform="translate(110, 180)">
+                                            <circle cx="48" cy="48" r="46" fill="url(#roseRedVelvet)"/>
+                                            <path d="M18 45 C12 25 45 12 70 18 C90 25 95 60 80 82 C65 98 30 95 18 75 Z" fill="#580226" opacity="0.6"/>
+                                            <path d="M28 42 C25 28 55 22 72 32 C82 45 78 72 62 76 C45 80 30 65 28 42 Z" fill="url(#roseRedDeep)"/>
+                                            <circle cx="48" cy="46" r="14" fill="#ff4081"/>
+                                            <circle cx="48" cy="46" r="7" fill="#ffffff" opacity="0.5"/>
+                                        </g>
+
+                                        <!-- ROSA 5: Centro Direita (Rosa Suave Luxo) -->
+                                        <g transform="translate(290, 180)">
+                                            <circle cx="48" cy="48" r="46" fill="url(#roseSoftPink)"/>
+                                            <path d="M18 45 C15 22 52 15 75 22 C92 30 95 65 78 82 C62 98 30 92 18 72 Z" fill="#9c1048" opacity="0.45"/>
+                                            <path d="M28 42 C28 26 58 24 72 35 C80 48 75 70 58 75 C42 78 30 65 28 42 Z" fill="url(#roseChampagne)"/>
+                                            <circle cx="49" cy="47" r="15" fill="#f06292"/>
+                                            <circle cx="49" cy="47" r="8" fill="#ffffff" opacity="0.8"/>
+                                        </g>
+
+                                        <!-- ROSA 6: O Coração Central do Buquê -->
+                                        <g transform="translate(200, 185)">
+                                            <circle cx="50" cy="50" r="48" fill="url(#roseRedDeep)"/>
+                                            <path d="M15 48 C10 22 45 10 75 16 C95 24 98 62 82 85 C65 102 32 98 18 78 Z" fill="#4d0121" opacity="0.7"/>
+                                            <path d="M26 44 C22 28 54 20 74 30 C86 42 82 72 65 78 C48 82 32 68 26 44 Z" fill="url(#roseRedVelvet)"/>
+                                            <path d="M38 42 C35 30 60 26 70 36 C78 48 72 65 58 68 C45 70 38 58 38 42 Z" fill="#e91e63"/>
+                                            <circle cx="52" cy="46" r="10" fill="#ff80ab"/>
+                                            <circle cx="52" cy="46" r="4" fill="#ffffff"/>
+                                        </g>
+
+                                        <!-- ROSA 7: Base Esquerda -->
+                                        <g transform="translate(150, 260)">
+                                            <circle cx="38" cy="38" r="36" fill="url(#roseRedVelvet)"/>
+                                            <path d="M15 35 C10 18 40 12 58 20 C72 32 68 58 52 64 C35 70 20 55 15 35 Z" fill="#60022a" opacity="0.7"/>
+                                            <circle cx="38" cy="36" r="12" fill="#ff4081"/>
+                                        </g>
+
+                                        <!-- ROSA 8: Base Direita -->
+                                        <g transform="translate(265, 260)">
+                                            <circle cx="38" cy="38" r="36" fill="url(#roseSoftPink)"/>
+                                            <path d="M15 35 C12 18 42 14 58 22 C70 34 65 58 50 62 C35 68 20 55 15 35 Z" fill="#ad1457" opacity="0.4"/>
+                                            <circle cx="38" cy="36" r="12" fill="#ffffff" opacity="0.8"/>
+                                        </g>
+
+                                        <!-- Gypsophila (Mosquitinho Branco) -->
+                                        <g fill="#ffffff" opacity="0.95">
+                                            <circle cx="130" cy="120" r="4"/><circle cx="138" cy="115" r="3"/><circle cx="125" cy="128" r="3.5"/>
+                                            <circle cx="370" cy="120" r="4"/><circle cx="362" cy="115" r="3"/><circle cx="375" cy="128" r="3.5"/>
+                                            <circle cx="190" cy="80" r="3.5"/><circle cx="182" cy="74" r="3"/><circle cx="196" cy="86" r="4"/>
+                                            <circle cx="310" cy="80" r="3.5"/><circle cx="318" cy="74" r="3"/><circle cx="304" cy="86" r="4"/>
+                                            <circle cx="110" cy="270" r="4"/><circle cx="102" cy="265" r="3"/><circle cx="118" cy="275" r="3.5"/>
+                                            <circle cx="390" cy="270" r="4"/><circle cx="398" cy="265" r="3"/><circle cx="382" cy="275" r="3.5"/>
+                                        </g>
+                                    </g>
+
+                                    <!-- ════ CAMADA 4: EMBALAGEM FRONTAL CONVEXA ════ -->
+                                    <g filter="url(#bloomGlow)">
+                                        <path d="M120 280 L250 550 L160 360 L80 290 Z" fill="url(#paperWrapOuter)"/>
+                                        <path d="M120 280 L250 550 L180 340 Z" fill="#d8c2aa" opacity="0.5"/>
+                                        <path d="M380 280 L250 550 L340 360 L420 290 Z" fill="url(#paperWrapOuter)"/>
+                                        <path d="M380 280 L250 550 L320 340 Z" fill="#ebd8c3" opacity="0.6"/>
+                                        <path d="M150 320 L250 560 L350 320 L280 380 L220 380 Z" fill="url(#paperWrapOuter)"/>
+                                    </g>
+
+                                    <!-- ════ CAMADA 5: LAÇO DE FITA DOURADO ════ -->
+                                    <g filter="url(#bloomGlow)">
+                                        <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#ribbonSilk)"/>
+                                        <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#ribbonSilk)"/>
+                                        <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#ribbonSilk)"/>
+                                        <path d="M250 432 C210 395 180 430 230 450 C245 455 250 445 250 432 Z" fill="url(#ribbonSilk)"/>
+                                        <path d="M250 432 C290 395 320 430 270 450 C255 455 250 445 250 432 Z" fill="url(#ribbonSilk)"/>
+                                        <ellipse cx="250" cy="435" rx="14" ry="12" fill="#ffe082"/>
+                                        <ellipse cx="250" cy="435" rx="10" ry="8" fill="url(#ribbonSilk)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h2>Você Passou com Distinção Máxima!</h2>
                         <p class="score" id="quiz-score"></p>
                         <p class="final-message">
-                            Parabéns, Profa. Hannah. Você foi aprovada com nota máxima — como em tudo na vida. E o prêmio?
+                            Este buquê gigante de rosas eternas foi preparado exclusivamente para você, Profa. Hannah. Flores que nunca vão murchar, exatamente como o meu amor por você.
                         </p>
                         <div class="stamp">✨ EU TE AMAR PRA SEMPRE ✨</div>
                         <p class="final-message" style="margin-top: 1.5em; font-style: italic;">
@@ -2141,6 +2423,11 @@
                     <div class="book-controls-top">
                         <span class="book-counter" id="page-counter">📖 Página 1 de 4</span>
                         <button class="book-relock" onclick="lockLetters()" title="Trancar novamente">🔒 Trancar Pasta</button>
+                    </div>
+
+                    <div class="gesture-hint">
+                        <span class="hand-icon">👉</span>
+                        <span>Deslize o dedo ou arraste com o mouse para folhear as páginas</span>
                     </div>
 
                     <div class="realistic-book" id="realistic-book-el">
@@ -2521,29 +2808,54 @@
             }
         }
 
-        // Suporte a swipe no celular (deslizar dedo para folhear)
+        // Suporte a swipe no celular (touch) e arrastar com o mouse no PC
         const bookElement = document.getElementById('realistic-book-el');
         if (bookElement) {
-            let touchStartX = 0;
-            let touchEndX = 0;
+            let startX = 0;
+            let isDragging = false;
 
+            // Touch (Celular / Tablet)
             bookElement.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
+                startX = e.changedTouches[0].screenX;
             }, { passive: true });
 
             bookElement.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleBookSwipe();
+                const endX = e.changedTouches[0].screenX;
+                handleGesture(endX - startX);
             }, { passive: true });
 
-            function handleBookSwipe() {
-                const diff = touchEndX - touchStartX;
-                if (Math.abs(diff) > 40) {
-                    if (diff < 0) {
-                        // Arrasta pra esquerda -> folhear pra frente
+            // Mouse Drag (PC / Desktop)
+            bookElement.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+            });
+
+            window.addEventListener('mouseup', (e) => {
+                if (isDragging) {
+                    isDragging = false;
+                    const diff = e.clientX - startX;
+                    handleGesture(diff);
+                }
+            });
+
+            // Rodinha do mouse horizontal ou trackpad
+            bookElement.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaX) > 35) {
+                    if (e.deltaX > 0) {
                         turnBookPage(1);
                     } else {
-                        // Arrasta pra direita -> folhear pra trás
+                        turnBookPage(-1);
+                    }
+                }
+            }, { passive: true });
+
+            function handleGesture(diff) {
+                if (Math.abs(diff) > 35) {
+                    if (diff < 0) {
+                        // Arrasta para a esquerda -> folhear para a frente
+                        turnBookPage(1);
+                    } else {
+                        // Arrasta para a direita -> folhear para trás
                         turnBookPage(-1);
                     }
                 }

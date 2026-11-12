@@ -952,56 +952,76 @@
         /* ═══════════════════════════════════════ */
         .buques-section {
             background: linear-gradient(180deg, #fff7f9 0%, #fff0f3 50%, #fdf6ec 100%);
-            padding: 5em 1.2em;
+            padding: 4em 1em;
             position: relative;
             overflow: hidden;
         }
 
         .buques-intro {
             text-align: center;
-            max-width: 650px;
-            margin: 0 auto 3em;
+            max-width: 700px;
+            margin: 0 auto 2.5em;
         }
 
         .buques-intro p {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--ink-light);
             line-height: 1.8;
+            padding: 0 0.5em;
         }
 
+        /* Grid: 1 col no celular, 2 em tablet, 3 em desktop (3 em cima, 3 em baixo = 6 buquês) */
         .buques-showcase {
-            display: flex;
-            flex-direction: column;
-            gap: 5em;
-            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2em;
+            max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (min-width: 650px) {
+            .buques-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.8em;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .buques-showcase {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2em;
+            }
         }
 
         .monumental-bouquet-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid #f1dfd5;
-            border-radius: 24px;
-            padding: 2.5em 1.5em;
-            box-shadow: 0 15px 45px rgba(194, 24, 91, 0.08);
+            border-radius: 20px;
+            padding: 1.8em 1.2em;
+            box-shadow: 0 10px 30px rgba(194, 24, 91, 0.07);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .monumental-bouquet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(194, 24, 91, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(194, 24, 91, 0.12);
         }
 
         .monumental-bouquet-stage {
             width: 100%;
-            max-width: 480px;
-            margin: 0 auto 1.5em;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+            max-width: 280px;
+            margin: 0 auto 1.2em;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
             animation: bouquetFloat 5s ease-in-out infinite;
         }
 
@@ -1014,72 +1034,76 @@
         /* Tag e Título do Buquê */
         .bouquet-tag {
             font-family: 'Patrick Hand', cursive;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: var(--gold-light);
             color: #b8860b;
             border: 1px solid var(--gold);
-            padding: 0.3em 1.2em;
+            padding: 0.25em 1em;
             border-radius: 30px;
-            letter-spacing: 1px;
-            margin-bottom: 0.8em;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.6em;
             display: inline-block;
         }
 
         .bouquet-headline {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.35rem;
             color: var(--ink);
-            margin-bottom: 0.4em;
+            margin-bottom: 0.3em;
+            line-height: 1.3;
         }
 
         .bouquet-subtext {
             font-family: 'Lora', serif;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-style: italic;
             color: var(--ink-light);
-            margin-bottom: 1.8em;
+            margin-bottom: 1.4em;
+            line-height: 1.5;
         }
 
         /* Área de Palavras Escondidas (Interativa) */
         .hidden-revelation-box {
             width: 100%;
-            max-width: 620px;
-            margin: 0 auto;
+            margin-top: auto;
             position: relative;
         }
 
         .revelation-envelope {
             background: linear-gradient(135deg, #fdf6ec, #ffffff);
             border: 2px dashed var(--rose-light);
-            border-radius: 16px;
-            padding: 1.5em;
+            border-radius: 14px;
+            padding: 1.1em 1em;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            width: 100%;
         }
 
-        .revelation-envelope:hover {
+        .revelation-envelope:hover,
+        .revelation-envelope:active {
             border-color: var(--rose);
             background: #fffbfa;
-            transform: scale(1.02);
         }
 
         .revelation-prompt {
             font-family: 'Patrick Hand', cursive;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             color: var(--rose);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5em;
+            gap: 0.4em;
+            line-height: 1.3;
         }
 
         .secret-words-content {
             display: none;
             text-align: left;
-            margin-top: 1.2em;
-            padding-top: 1.2em;
+            margin-top: 1em;
+            padding-top: 1em;
             border-top: 1px dashed #e8d0d5;
-            animation: fadeInWords 0.6s ease forwards;
+            animation: fadeInWords 0.5s ease forwards;
         }
 
         .revelation-envelope.revealed .secret-words-content {
@@ -1091,33 +1115,35 @@
         }
 
         @keyframes fadeInWords {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .secret-quote {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--rose);
-            line-height: 1.5;
-            margin-bottom: 0.8em;
+            line-height: 1.4;
+            margin-bottom: 0.6em;
             text-align: center;
         }
 
         .secret-body {
-            font-size: 0.96rem;
-            line-height: 1.9;
+            font-size: 0.9rem;
+            line-height: 1.8;
             color: var(--ink-light);
-            text-indent: 1.5em;
+            text-indent: 1.2em;
+            text-align: justify;
         }
 
         .secret-signature {
             text-align: right;
-            margin-top: 1em;
+            margin-top: 0.8em;
             font-family: 'Patrick Hand', cursive;
             color: #b8860b;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
+
         .carta-bg {
             background:
                 radial-gradient(ellipse at 50% 0%, rgba(212,160,23,0.08), transparent 60%),
@@ -1125,26 +1151,79 @@
             padding: 0;
         }
 
-        /* Locked Envelope / Chest */
+        /* Locked Envelope / Chest com Input de Senha */
         .lock-container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             text-align: center;
             background: var(--paper);
             border: 2px dashed var(--gold);
-            border-radius: 16px;
-            padding: 3em 1.5em;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 2.5em 1.5em;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
             transition: all 0.5s ease;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .lock-icon {
             font-size: 3.5rem;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.4em;
             display: inline-block;
             transition: transform 0.4s ease;
-            cursor: pointer;
             animation: gentleShake 3s infinite;
+        }
+
+        .lock-password-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+            margin-top: 1.5em;
+            width: 100%;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lock-input {
+            width: 100%;
+            font-family: 'Lora', serif;
+            font-size: 1.15rem;
+            padding: 0.8em 1.2em;
+            border: 2px solid #e0d5c5;
+            border-radius: 50px;
+            text-align: center;
+            color: var(--ink);
+            background: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+        }
+
+        .lock-input:focus {
+            border-color: var(--rose);
+            box-shadow: 0 0 12px rgba(194, 24, 91, 0.2);
+        }
+
+        .lock-input.shake-error {
+            animation: inputShake 0.4s ease;
+            border-color: #d32f2f;
+            background: #ffebee;
+        }
+
+        @keyframes inputShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .lock-feedback {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            min-height: 1.4em;
+            color: var(--rose);
         }
 
         @keyframes gentleShake {
@@ -2749,6 +2828,255 @@
                         </div>
                     </div>
 
+                    <!-- ════ BUQUÊ 3: GIRASSÓIS DOURADOS & FLORES SILVESTRES (ALEGRIA & LUZ) ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 03 • Girassóis Dourados & Flores de Campo</span>
+                        <h3 class="bouquet-headline">O Buquê do Seu Sorriso</h3>
+                        <p class="bouquet-subtext">Flores solares radiantes envoltas em papel artesanal e laço dourado</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="sunflowerCenter" cx="45%" cy="45%" r="55%">
+                                        <stop offset="0%" stop-color="#5d4037"/><stop offset="70%" stop-color="#3e2723"/><stop offset="100%" stop-color="#1b0e07"/>
+                                    </radialGradient>
+                                    <radialGradient id="sunflowerPetal" cx="30%" cy="30%" r="70%">
+                                        <stop offset="0%" stop-color="#fff59d"/><stop offset="40%" stop-color="#fbc02d"/><stop offset="100%" stop-color="#f57f17"/>
+                                    </radialGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="#2c4a3e"/>
+                                </g>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M130 170 C80 110 60 70 40 50 C70 70 110 110 140 180 Z" fill="#4e7d62"/>
+                                    <path d="M370 170 C420 110 440 70 460 50 C430 70 390 110 360 180 Z" fill="#4e7d62"/>
+                                    <circle cx="70" cy="80" r="16" fill="#8fa89b"/><circle cx="430" cy="80" r="16" fill="#8fa89b"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <!-- Girassol Centro -->
+                                    <g transform="translate(190, 90)">
+                                        <circle cx="60" cy="60" r="58" fill="url(#sunflowerPetal)"/>
+                                        <circle cx="60" cy="60" r="28" fill="url(#sunflowerCenter)"/>
+                                        <circle cx="60" cy="60" r="26" stroke="#d4a017" stroke-dasharray="3 3"/>
+                                    </g>
+                                    <!-- Girassol Esquerda -->
+                                    <g transform="translate(100, 160)">
+                                        <circle cx="50" cy="50" r="48" fill="url(#sunflowerPetal)"/>
+                                        <circle cx="50" cy="50" r="22" fill="url(#sunflowerCenter)"/>
+                                    </g>
+                                    <!-- Girassol Direita -->
+                                    <g transform="translate(280, 160)">
+                                        <circle cx="50" cy="50" r="48" fill="url(#sunflowerPetal)"/>
+                                        <circle cx="50" cy="50" r="22" fill="url(#sunflowerCenter)"/>
+                                    </g>
+                                    <!-- Botões Dourados menores -->
+                                    <g transform="translate(150, 245)"><circle cx="35" cy="35" r="32" fill="url(#sunflowerPetal)"/><circle cx="35" cy="35" r="15" fill="url(#sunflowerCenter)"/></g>
+                                    <g transform="translate(260, 245)"><circle cx="35" cy="35" r="32" fill="url(#sunflowerPetal)"/><circle cx="35" cy="35" r="15" fill="url(#sunflowerCenter)"/></g>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperWrap1)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#ffe082"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"O seu sorriso tem a força do sol: ilumina tudo e faz os meus dias mais felizes."</div>
+                                    <p class="secret-body">
+                                        Hannah, quando penso no que mais me cativa em você, lembro imediatamente do seu sorriso sincero. Os girassóis seguem a luz, e o meu coração segue a alegria que você transmite. Obrigado por trazer tanta luz para a minha vida.
+                                    </p>
+                                    <div class="secret-signature">— De quem ama ver você sorrir</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ════ BUQUÊ 4: ORQUÍDEAS ROXAS & MAGENTA (ELEGÂNCIA & RARIDADE) ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 04 • Orquídeas Phalaenopsis & Lírios Púrpura</span>
+                        <h3 class="bouquet-headline">O Buquê da Sua Beleza Única</h3>
+                        <p class="bouquet-subtext">Flores nobres exóticas que simbolizam a admiração e o respeito infinito</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="orchidPurple" cx="45%" cy="35%" r="65%">
+                                        <stop offset="0%" stop-color="#f3e5f5"/><stop offset="35%" stop-color="#ba68c8"/><stop offset="75%" stop-color="#7b1fa2"/><stop offset="100%" stop-color="#4a148c"/>
+                                    </radialGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="#1b3529"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <g transform="translate(190, 75)"><circle cx="60" cy="60" r="54" fill="url(#orchidPurple)"/><circle cx="60" cy="55" r="18" fill="#ffd54f"/><circle cx="60" cy="55" r="8" fill="#ffffff"/></g>
+                                    <g transform="translate(110, 165)"><circle cx="48" cy="48" r="44" fill="url(#orchidPurple)"/><circle cx="48" cy="45" r="15" fill="#ffd54f"/></g>
+                                    <g transform="translate(280, 165)"><circle cx="48" cy="48" r="44" fill="url(#orchidPurple)"/><circle cx="48" cy="45" r="15" fill="#ffd54f"/></g>
+                                    <g transform="translate(195, 175)"><circle cx="52" cy="52" r="48" fill="url(#orchidPurple)"/><circle cx="52" cy="48" r="17" fill="#ffd54f"/></g>
+                                    <g transform="translate(150, 250)"><circle cx="38" cy="38" r="35" fill="url(#orchidPurple)"/><circle cx="38" cy="36" r="12" fill="#ffd54f"/></g>
+                                    <g transform="translate(260, 250)"><circle cx="38" cy="38" r="35" fill="url(#orchidPurple)"/><circle cx="38" cy="36" r="12" fill="#ffd54f"/></g>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperWrap1)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#ffe082"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"Você é uma mulher rara, preciosa e admirável em cada gesto que faz."</div>
+                                    <p class="secret-body">
+                                        As orquídeas representam a raridade de encontrar alguém como você. Sua postura, sua inteligência como educadora e sua integridade me encantam a cada conversa. Eu tenho a mulher mais maravilhosa do mundo ao meu lado.
+                                    </p>
+                                    <div class="secret-signature">— Seu admirador para sempre</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ════ BUQUÊ 5: TULIPAS CORAL & TANGERINA (ENTUSIASMO & SONHOS) ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 05 • Tulipas Coral Imperial & Pêssego</span>
+                        <h3 class="bouquet-headline">O Buquê dos Nossos Sonhos</h3>
+                        <p class="bouquet-subtext">Cores quentes e vibrantes que celebram todos os planos que temos juntos</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="tulipCoral" cx="40%" cy="35%" r="65%">
+                                        <stop offset="0%" stop-color="#ffebee"/><stop offset="35%" stop-color="#ff7043"/><stop offset="75%" stop-color="#f4511e"/><stop offset="100%" stop-color="#bf360c"/>
+                                    </radialGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="#2c4a3e"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <g transform="translate(190, 75)"><ellipse cx="60" cy="55" rx="42" ry="56" fill="url(#tulipCoral)"/><path d="M60 20 L55 60 L65 60 Z" fill="#ffab91"/></g>
+                                    <g transform="translate(115, 160)"><ellipse cx="45" cy="45" rx="36" ry="48" fill="url(#tulipCoral)"/></g>
+                                    <g transform="translate(285, 160)"><ellipse cx="45" cy="45" rx="36" ry="48" fill="url(#tulipCoral)"/></g>
+                                    <g transform="translate(195, 180)"><ellipse cx="50" cy="48" rx="40" ry="52" fill="url(#tulipCoral)"/></g>
+                                    <g transform="translate(150, 250)"><ellipse cx="38" cy="38" rx="30" ry="40" fill="url(#tulipCoral)"/></g>
+                                    <g transform="translate(260, 250)"><ellipse cx="38" cy="38" rx="30" ry="40" fill="url(#tulipCoral)"/></g>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperPink)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperPink)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonRose)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonRose)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#f8bbd0"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"Cada plano que fazemos para o Brasil e Filipinas enche o meu peito de esperança."</div>
+                                    <p class="secret-body">
+                                        Hannah, as tulipas representam o recomeço e os sonhos que florescem. Eu conto os dias para conhecer a sua cidade, caminhar com você sem pressa e poder te mostrar o meu país. O nosso futuro é a minha maior motivação.
+                                    </p>
+                                    <div class="secret-signature">— De quem sonha junto com você</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ════ BUQUÊ 6: PEÔNIAS ROSA CLARO & VINHO NOBRE (AMOR ETERNO) ════ -->
+                    <div class="monumental-bouquet-card">
+                        <span class="bouquet-tag">Grande Arranjo N° 06 • Peônias Imperiais & Ramos de Oliveira</span>
+                        <h3 class="bouquet-headline">O Buquê da Promessa Eterna</h3>
+                        <p class="bouquet-subtext">O mais imponente arranjo floral, selando o amor perpétuo do seu aluno</p>
+
+                        <div class="monumental-bouquet-stage">
+                            <svg class="monumental-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="peonyGrad" cx="45%" cy="40%" r="65%">
+                                        <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#f8bbd0"/><stop offset="70%" stop-color="#e91e63"/><stop offset="100%" stop-color="#880e4f"/>
+                                    </radialGradient>
+                                </defs>
+                                <g filter="url(#bqShadow1)">
+                                    <path d="M110 220 L250 540 L40 260 L80 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 220 L250 540 L460 260 L420 180 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M90 200 L250 550 L410 200 L360 130 L140 130 Z" fill="#2c4a3e"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <g transform="translate(185, 70)"><circle cx="65" cy="65" r="60" fill="url(#peonyGrad)"/><circle cx="65" cy="60" r="24" fill="#ffffff" opacity="0.8"/></g>
+                                    <g transform="translate(100, 160)"><circle cx="52" cy="52" r="48" fill="url(#peonyGrad)"/><circle cx="52" cy="48" r="18" fill="#ffffff" opacity="0.7"/></g>
+                                    <g transform="translate(285, 160)"><circle cx="52" cy="52" r="48" fill="url(#peonyGrad)"/><circle cx="52" cy="48" r="18" fill="#ffffff" opacity="0.7"/></g>
+                                    <g transform="translate(190, 175)"><circle cx="56" cy="56" r="52" fill="url(#peonyGrad)"/><circle cx="56" cy="52" r="20" fill="#ffffff" opacity="0.9"/></g>
+                                    <g transform="translate(145, 255)"><circle cx="40" cy="40" r="38" fill="url(#peonyGrad)"/></g>
+                                    <g transform="translate(260, 255)"><circle cx="40" cy="40" r="38" fill="url(#peonyGrad)"/></g>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M110 270 L250 550 L160 350 L70 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M390 270 L250 550 L340 350 L430 280 Z" fill="url(#bqPaperWrap1)"/>
+                                    <path d="M140 310 L250 560 L360 310 L280 375 L220 375 Z" fill="url(#bqPaperWrap1)"/>
+                                </g>
+                                <g filter="url(#bqGlow1)">
+                                    <path d="M210 420 Q250 435 290 420 L295 445 Q250 460 205 445 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M235 440 Q215 480 190 530 Q210 515 230 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <path d="M265 440 Q285 480 310 530 Q290 515 270 460 Z" fill="url(#bqRibbonGold1)"/>
+                                    <ellipse cx="250" cy="435" rx="14" ry="12" fill="#ffe082"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="hidden-revelation-box">
+                            <div class="revelation-envelope" onclick="toggleSecretWords(this)">
+                                <div class="revelation-prompt">
+                                    <span>💌 Toque para desatar a fita e ler o bilhete</span>
+                                    <span>✨ Bilhete revelado com amor</span>
+                                </div>
+                                <div class="secret-words-content">
+                                    <div class="secret-quote">"Palangga ko ikaw, hoje, amanhã e por todos os anos da nossa eternidade."</div>
+                                    <p class="secret-body">
+                                        Hannah, você é o amor da minha vida. Eu prometo honrar tudo o que construímos nestes 6 meses e fazer de tudo para que a nossa história seja cada vez mais linda. Você já é a dona do meu coração e a futura Sra. Monteiro.
+                                    </p>
+                                    <div class="secret-signature">— Para sempre seu, Kaynan Monteiro</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -2760,17 +3088,30 @@
                 <h2 class="section-title">O Livro de Cartas <em>Para Hannah</em></h2>
                 <div class="divider"></div>
 
-                <!-- CADEADO / ESTADO BLOQUEADO -->
+                <!-- CADEADO COM SENHA (11/05/2026) -->
                 <div class="lock-container" id="lock-screen">
-                    <div class="lock-icon" id="lock-icon-el" onclick="unlockLetters()">🔒</div>
+                    <div class="lock-icon" id="lock-icon-el">🔒</div>
                     <h3 class="lock-title">Acesso Restrito: Somente para a Professora</h3>
                     <p class="lock-desc">
                         Esta pasta contém cartas e memórias seladas a sete chaves pelo participante masculino. 
-                        Apenas Hannah G. Cantonjos possui a chave deste coração.
+                        Digite a data especial do nosso amor para abrir o coração:
                     </p>
-                    <button class="btn-unlock" onclick="unlockLetters()">
-                        <span>🗝️</span> Abrir com a Chave do Amor
-                    </button>
+                    
+                    <form class="lock-password-form" onsubmit="handleUnlockSubmit(event)">
+                        <input 
+                            type="text" 
+                            id="lock-password-input" 
+                            class="lock-input" 
+                            placeholder="DD/MM/AAAA" 
+                            maxlength="10" 
+                            autocomplete="off" 
+                            oninput="formatDateInput(this)"
+                        />
+                        <div class="lock-feedback" id="lock-feedback-msg"></div>
+                        <button type="submit" class="btn-unlock">
+                            <span>🗝️</span> Abrir com a Chave do Amor
+                        </button>
+                    </form>
                 </div>
 
                 <!-- LIVRO DE CARTAS DESBLOQUEADO (FOLHEAR) -->
@@ -3057,24 +3398,53 @@
             }
         }
 
-        // ──── SALA DA DIRETORA: CADEADO & LIVRO FOLHEÁVEL ────
+        // ──── SALA DA DIRETORA: CADEADO COM SENHA (11/05/2026) & LIVRO FOLHEÁVEL ────
         let currentLetterPage = 0;
         const totalLetterPages = 4;
         let lastDirection = 1;
+        const SECRET_LOCK_CODE = "11/05/2026";
 
-        function unlockLetters() {
+        function formatDateInput(input) {
+            let val = input.value.replace(/\D/g, '');
+            if (val.length > 2 && val.length <= 4) {
+                val = val.slice(0, 2) + '/' + val.slice(2);
+            } else if (val.length > 4) {
+                val = val.slice(0, 2) + '/' + val.slice(2, 4) + '/' + val.slice(4, 8);
+            }
+            input.value = val;
+            document.getElementById('lock-feedback-msg').textContent = '';
+            input.classList.remove('shake-error');
+        }
+
+        function handleUnlockSubmit(e) {
+            if (e) e.preventDefault();
+            const input = document.getElementById('lock-password-input');
+            const feedback = document.getElementById('lock-feedback-msg');
             const lockIcon = document.getElementById('lock-icon-el');
-            lockIcon.textContent = '🔓';
-            lockIcon.style.transform = 'scale(1.2) rotate(15deg)';
-            
-            setTimeout(() => {
-                document.getElementById('lock-screen').style.display = 'none';
-                document.getElementById('book-screen').style.display = 'block';
-                currentLetterPage = 0;
-                updateLetterBookView(1);
-                celebrationBurst();
-                document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 600);
+            const val = input.value.trim();
+
+            if (val === SECRET_LOCK_CODE) {
+                feedback.textContent = '✨ Senha correta, meu amor!';
+                feedback.style.color = 'var(--gold)';
+                lockIcon.textContent = '🔓';
+                lockIcon.style.transform = 'scale(1.2) rotate(15deg)';
+
+                setTimeout(() => {
+                    document.getElementById('lock-screen').style.display = 'none';
+                    document.getElementById('book-screen').style.display = 'block';
+                    currentLetterPage = 0;
+                    updateLetterBookView(1);
+                    celebrationBurst();
+                    document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 600);
+            } else {
+                feedback.textContent = 'Data incorreta... Tente a data de nós dois ❤️';
+                feedback.style.color = '#d32f2f';
+                input.classList.add('shake-error');
+                setTimeout(() => {
+                    input.classList.remove('shake-error');
+                }, 500);
+            }
         }
 
         function lockLetters() {
@@ -3084,6 +3454,10 @@
             const lockIcon = document.getElementById('lock-icon-el');
             lockIcon.textContent = '🔒';
             lockIcon.style.transform = 'scale(1) rotate(0deg)';
+            const input = document.getElementById('lock-password-input');
+            if (input) input.value = '';
+            const feedback = document.getElementById('lock-feedback-msg');
+            if (feedback) feedback.textContent = '';
             currentLetterPage = 0;
             document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Plano de Aula do Amor — Para Hannah G. Cantonjos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose: #c2185b;
+            --rose-light: #f8bbd0;
+            --rose-dark: #880e4f;
+            --gold: #d4a017;
+            --gold-light: #fff8e1;
+            --cream: #fdf6ec;
+            --board: #2c4a3e;
+            --board-dark: #1b3529;
+            --ink: #3e2723;
+            --ink-light: #5d4037;
+            --paper: #fffef9;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            color: var(--ink);
+            background: var(--cream);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+
+        img { max-width: 100%; height: auto; }
+
+        /* ═══════════════════════════════════════ */
+        /*          LOADING / ENTRANCE             */
+        /* ═══════════════════════════════════════ */
+        #entrance {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--board-dark), var(--board), #3a6b5a);
+            transition: opacity 1s ease, transform 1s ease;
+            padding: 1.5em;
+        }
+
+        #entrance.fade-out {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        #entrance h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #fff;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 0.5em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            animation: fadeUp 1s ease both;
+            line-height: 1.3;
+        }
+
+        #entrance .subtitle {
+            font-family: 'Lora', serif;
+            color: var(--rose-light);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 2em;
+            text-align: center;
+            animation: fadeUp 1s 0.4s ease both;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        #entrance button {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            padding: 1em 2.5em;
+            border: 2px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: fadeUp 1s 0.8s ease both;
+            letter-spacing: 1px;
+            min-height: 54px;
+        }
+
+        #entrance button:active {
+            background: var(--gold);
+            color: var(--board-dark);
+            transform: scale(0.97);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              NAVIGATION                 */
+        /* ═══════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(44, 74, 62, 0.97);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        nav.visible { display: block; }
+
+        nav .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1em;
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 56px;
+        }
+
+        nav .logo {
+            font-family: 'Dancing Script', cursive;
+            color: var(--gold);
+            font-size: 1.2rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .hamburger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 0.5em;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(27, 53, 41, 0.98);
+            padding: 0.5em 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        nav ul.open { display: flex; }
+
+        nav ul li a {
+            display: block;
+            padding: 0.9em 1.5em;
+            color: #ccc;
+            text-decoration: none;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.05rem;
+            transition: color 0.3s, background 0.3s;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:active,
+        nav ul li a.active {
+            color: var(--gold);
+            background: rgba(212,160,23,0.08);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           HERO / HEADER                 */
+        /* ═══════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5em 1.2em 3em;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(194,24,91,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(212,160,23,0.06) 0%, transparent 50%),
+                var(--cream);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a017' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.8rem;
+            color: var(--rose);
+            border: 1px solid var(--rose-light);
+            padding: 0.4em 1.2em;
+            border-radius: 50px;
+            margin-bottom: 1.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--ink);
+            line-height: 1.2;
+            margin-bottom: 0.3em;
+        }
+
+        .hero h1 span { color: var(--rose); font-style: italic; }
+
+        .hero .teacher-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1.2em;
+            line-height: 1.3;
+        }
+
+        .hero .meta {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 2;
+            text-align: left;
+            background: var(--paper);
+            padding: 1.2em 1.5em;
+            border-radius: 12px;
+            border: 1px solid #e8e0d4;
+        }
+
+        .hero .meta strong { color: var(--rose); }
+
+        .hero .scroll-hint {
+            margin-top: 2em;
+            animation: bounce 2s infinite;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         SECTION STYLES                  */
+        /* ═══════════════════════════════════════ */
+        section {
+            padding: 3em 1.2em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.8rem;
+            color: var(--rose);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5em;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--ink);
+            margin-bottom: 0.8em;
+            line-height: 1.25;
+        }
+
+        .section-title em { color: var(--rose); font-style: italic; }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rose), var(--gold));
+            margin: 0 0 1.5em 0;
+            border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           PLANO DE AULA                 */
+        /* ═══════════════════════════════════════ */
+        .plano-card {
+            background: var(--paper);
+            border: 1px solid #e0d5c5;
+            border-radius: 12px;
+            padding: 1.5em;
+            margin-bottom: 1em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plano-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--rose), var(--gold));
+        }
+
+        .plano-card h3 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.15rem;
+            color: var(--rose);
+            margin-bottom: 0.6em;
+        }
+
+        .plano-card p {
+            color: var(--ink-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .plano-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+
+        .plano-item {
+            background: var(--paper);
+            border: 1px solid #e8e0d4;
+            border-radius: 10px;
+            padding: 1.5em;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plano-item:active {
+            transform: scale(0.98);
+        }
+
+        .plano-item .icon { font-size: 2rem; margin-bottom: 0.4em; }
+
+        .plano-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 0.4em;
+        }
+
+        .plano-item p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           SALAS (ROOMS)                 */
+        /* ═══════════════════════════════════════ */
+        .sala {
+            background: var(--paper);
+            border-radius: 12px;
+            margin-bottom: 2em;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e8e0d4;
+        }
+
+        .sala-header {
+            background: linear-gradient(135deg, var(--board-dark), var(--board));
+            padding: 1.5em;
+            position: relative;
+        }
+
+        .sala-header .room-number {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.2em;
+        }
+
+        .sala-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+
+        .sala-header .chalk-line {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--rose), var(--gold));
+        }
+
+        .sala-body {
+            padding: 1.5em;
+        }
+
+        .sala-body > p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--ink-light);
+            margin-bottom: 1em;
+        }
+
+        .sala-body .highlight {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: var(--rose);
+            text-align: center;
+            padding: 1em 0.5em;
+            margin: 1.5em 0 0.5em;
+            border-top: 1px solid var(--rose-light);
+            border-bottom: 1px solid var(--rose-light);
+            line-height: 1.5;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1.8em;
+            margin: 1.5em 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--rose), var(--gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5em;
+            padding-left: 1.2em;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.15em;
+            top: 0.35em;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--rose);
+            border: 2px solid var(--paper);
+            box-shadow: 0 0 0 2px var(--rose-light);
+        }
+
+        .timeline-item h4 {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-bottom: 0.2em;
+        }
+
+        .timeline-item p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--ink-light);
+        }
+
+        /* Future grid */
+        .future-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8em;
+            margin-top: 1.2em;
+        }
+
+        .future-card {
+            background: linear-gradient(135deg, var(--cream), var(--gold-light));
+            border-radius: 10px;
+            padding: 1.2em 0.8em;
+            text-align: center;
+            border: 1px solid rgba(212,160,23,0.2);
+        }
+
+        .future-card .emoji { font-size: 2rem; margin-bottom: 0.3em; }
+
+        .future-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            color: var(--ink);
+            margin-bottom: 0.3em;
+        }
+
+        .future-card p {
+            font-size: 0.78rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*        CAPÍTULO VII - RESPOSTA          */
+        /* ═══════════════════════════════════════ */
+        .section-intro {
+            color: var(--ink-light);
+            margin-bottom: 1.5em;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .resposta-card {
+            background: var(--paper);
+            border-radius: 12px;
+            padding: 1.8em 1.2em 1.2em;
+            margin-bottom: 1.2em;
+            border-left: 4px solid var(--rose);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .resposta-card .chapter-badge {
+            position: absolute;
+            top: -0.7em; left: 1em;
+            background: var(--rose);
+            color: #fff;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.75rem;
+            padding: 0.25em 0.9em;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .resposta-card .she-said {
+            font-style: italic;
+            color: var(--ink-light);
+            margin-bottom: 0.8em;
+            padding-left: 0.8em;
+            border-left: 2px solid var(--rose-light);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .resposta-card .he-says {
+            color: var(--ink);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .resposta-card .he-says::before { content: '💌 '; }
+
+        /* ═══════════════════════════════════════ */
+        /*       DICIONÁRIO MINASBATE             */
+        /* ═══════════════════════════════════════ */
+        .dict-bg {
+            background: linear-gradient(180deg, var(--gold-light), var(--cream));
+            padding: 0;
+        }
+
+        .dict-entry {
+            background: var(--paper);
+            border-radius: 10px;
+            padding: 1.2em;
+            margin-bottom: 0.8em;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid #e8e0d4;
+        }
+
+        .dict-word {
+            margin-bottom: 0.5em;
+        }
+
+        .dict-word h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--rose);
+            display: inline;
+        }
+
+        .dict-word .pron {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            margin-left: 0.5em;
+        }
+
+        .dict-def p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--ink-light);
+        }
+
+        .dict-def .meaning {
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .dict-def .memory {
+            font-style: italic;
+            margin-top: 0.5em;
+            padding-left: 0.8em;
+            border-left: 2px solid var(--gold);
+            color: #b8860b;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*          CADERNETA DE NOTAS             */
+        /* ═══════════════════════════════════════ */
+        .caderneta-bg {
+            background: var(--board);
+            padding: 0;
+        }
+
+        .caderneta-bg .section-label { color: var(--gold); }
+        .caderneta-bg .section-title { color: #fff; }
+
+        .caderneta {
+            background: var(--paper);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .caderneta-header {
+            background: var(--rose);
+            color: #fff;
+            padding: 1em 1.2em;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.85rem;
+        }
+
+        .caderneta-header span:last-child {
+            display: none;
+        }
+
+        /* Mobile: use cards instead of table */
+        .grade-table { display: none; }
+
+        .grade-cards {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grade-card-item {
+            padding: 1em 1.2em;
+            border-bottom: 1px solid #f0ebe3;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .grade-card-item:last-child { border-bottom: none; }
+
+        .grade-card-info { flex: 1; }
+
+        .grade-card-info .subject-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 0.2em;
+        }
+
+        .grade-card-info .subject-note {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .grade-card-grade {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--rose);
+            font-weight: 700;
+            flex-shrink: 0;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .caderneta-footer {
+            background: var(--gold-light);
+            padding: 1.5em 1.2em;
+            border-top: 2px dashed var(--gold);
+        }
+
+        .caderneta-footer h4 {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--rose);
+            margin-bottom: 0.5em;
+            font-size: 0.95rem;
+        }
+
+        .caderneta-footer p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         QUIZ / PROVA FINAL              */
+        /* ═══════════════════════════════════════ */
+        .quiz-bg {
+            background: linear-gradient(135deg, var(--cream), #fff5f8);
+            padding: 0;
+        }
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            background: var(--paper);
+            border-radius: 12px;
+            padding: 1.5em 1.2em;
+            margin-bottom: 1em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid #e8e0d4;
+            display: none;
+        }
+
+        .quiz-question.active {
+            display: block;
+            animation: fadeUp 0.5s ease;
+        }
+
+        .quiz-question .q-number {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+        }
+
+        .quiz-question h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--ink);
+            margin-bottom: 1.2em;
+            line-height: 1.4;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6em;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 1em 1.2em;
+            border: 2px solid #e8e0d4;
+            border-radius: 10px;
+            background: #fff;
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            line-height: 1.4;
+        }
+
+        .quiz-option:active {
+            border-color: var(--rose-light);
+            background: #fff5f8;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--rose);
+            background: #fce4ec;
+            color: var(--rose-dark);
+            font-weight: 700;
+        }
+
+        .quiz-option.wrong {
+            border-color: #ccc;
+            opacity: 0.5;
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5em;
+            margin-bottom: 1.5em;
+        }
+
+        .quiz-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+
+        .quiz-dot.done { background: var(--rose); }
+        .quiz-dot.current { background: var(--gold); transform: scale(1.3); }
+
+        /* Quiz Result */
+        #quiz-result {
+            display: none;
+            text-align: center;
+            padding: 2em 1em;
+        }
+
+        #quiz-result.show {
+            display: block;
+            animation: fadeUp 0.8s ease;
+        }
+
+        #quiz-result .big-heart {
+            font-size: 4rem;
+            animation: heartbeat 1s infinite;
+            display: block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        #quiz-result h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--rose);
+            margin: 0.5em 0;
+        }
+
+        #quiz-result .score {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1em;
+            line-height: 1.5;
+        }
+
+        #quiz-result .final-message {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--ink-light);
+        }
+
+        #quiz-result .stamp {
+            display: inline-block;
+            margin-top: 1.5em;
+            padding: 0.8em 1.5em;
+            border: 3px solid var(--rose);
+            border-radius: 10px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            color: var(--rose);
+            transform: rotate(-3deg);
+            letter-spacing: 1px;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*       SALA DA DIRETORA (CARTA)          */
+        /* ═══════════════════════════════════════ */
+        .carta-bg {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212,160,23,0.08), transparent 60%),
+                var(--cream);
+            padding: 0;
+        }
+
+        .carta {
+            background: var(--paper);
+            border: 1px solid #e0d5c5;
+            border-radius: 4px;
+            padding: 2em 1.5em;
+            box-shadow:
+                3px 3px 0 #f5f0e8,
+                3px 3px 0 1px #e0d5c5,
+                6px 6px 0 #f5f0e8,
+                6px 6px 0 1px #e0d5c5;
+            position: relative;
+        }
+
+        .carta::before {
+            content: '✉';
+            position: absolute;
+            top: -1.2em; right: 1.5em;
+            font-size: 1.8rem;
+            opacity: 0.3;
+        }
+
+        .carta .dear {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: var(--rose);
+            margin-bottom: 1.2em;
+        }
+
+        .carta p {
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+            margin-bottom: 0.8em;
+            text-indent: 1.5em;
+        }
+
+        .carta .signature {
+            text-align: right;
+            margin-top: 1.5em;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .carta .signature span {
+            display: block;
+            font-family: 'Lora', serif;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--ink-light);
+            margin-top: 0.2em;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              FOOTER                     */
+        /* ═══════════════════════════════════════ */
+        footer {
+            background: var(--board-dark);
+            color: #aaa;
+            text-align: center;
+            padding: 2.5em 1.2em;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        footer .hearts {
+            font-size: 1.3rem;
+            margin-bottom: 0.5em;
+            letter-spacing: 0.3em;
+        }
+
+        footer .forever {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-top: 0.8em;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         SCROLL ANIMATIONS               */
+        /* ═══════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*        FLOATING HEARTS                  */
+        /* ═══════════════════════════════════════ */
+        .floating-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-heart {
+            position: absolute;
+            bottom: -20px;
+            font-size: 1rem;
+            opacity: 0;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+            10%  { opacity: 0.5; }
+            90%  { opacity: 0.15; }
+            100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*     TABLET (min-width: 600px)           */
+        /* ═══════════════════════════════════════ */
+        @media (min-width: 600px) {
+            section { padding: 4em 2em; }
+
+            .hero h1 { font-size: 3rem; }
+            .hero .teacher-name { font-size: 2rem; }
+            .hero .meta { font-size: 0.95rem; text-align: center; }
+            .hero-content { max-width: 700px; }
+
+            #entrance h1 { font-size: 3rem; }
+            #entrance .subtitle { font-size: 1.1rem; max-width: 400px; }
+
+            .section-title { font-size: 2rem; }
+
+            .plano-card { padding: 2em; }
+            .plano-grid { grid-template-columns: 1fr 1fr; gap: 1.2em; }
+
+            .sala-header { padding: 2em; }
+            .sala-header h3 { font-size: 1.5rem; }
+            .sala-body { padding: 2em; }
+
+            .future-grid { grid-template-columns: repeat(3, 1fr); gap: 1em; }
+
+            .resposta-card { padding: 2em 1.5em 1.5em; }
+
+            .dict-entry {
+                display: flex;
+                gap: 1.5em;
+                align-items: flex-start;
+                padding: 1.5em;
+            }
+            .dict-word {
+                flex-shrink: 0;
+                min-width: 120px;
+                margin-bottom: 0;
+            }
+            .dict-word h3 { display: block; }
+            .dict-word .pron { margin-left: 0; display: block; margin-top: 0.2em; }
+
+            .caderneta-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .caderneta-header span:last-child { display: inline; }
+
+            .carta { padding: 3em 2.5em; }
+            .carta p { font-size: 1rem; }
+
+            .quiz-question { padding: 2em; }
+            .quiz-question h3 { font-size: 1.25rem; }
+
+            .sala-body .highlight { font-size: 1.4rem; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*     DESKTOP (min-width: 900px)          */
+        /* ═══════════════════════════════════════ */
+        @media (min-width: 900px) {
+            html { scroll-padding-top: 80px; }
+
+            section { padding: 5em 1.5em; }
+
+            .hero h1 { font-size: 4rem; }
+            .hero .teacher-name { font-size: 2.5rem; }
+            .hero .badge { font-size: 0.9rem; }
+
+            #entrance h1 { font-size: 4rem; }
+            #entrance .subtitle { font-size: 1.3rem; max-width: none; }
+            #entrance button { font-size: 1.3rem; padding: 1em 3em; }
+
+            .hamburger { display: none; }
+
+            nav ul {
+                display: flex !important;
+                flex-direction: row;
+                position: static;
+                background: none;
+                box-shadow: none;
+                padding: 0;
+                gap: 0;
+            }
+
+            nav ul li a {
+                padding: 1em;
+                font-size: 0.95rem;
+                min-height: auto;
+            }
+
+            nav .nav-inner { padding: 0 1.5em; }
+            nav .logo { font-size: 1.4rem; }
+
+            .section-title { font-size: 2.5rem; }
+
+            .plano-card { padding: 2.5em; }
+            .plano-card h3 { font-size: 1.3rem; }
+            .plano-card p { font-size: 1.05rem; }
+            .plano-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+            .plano-item:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            }
+
+            .sala-header { padding: 2em 2.5em; }
+            .sala-body { padding: 2.5em; }
+
+            .future-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5em; }
+            .future-card { padding: 2em; }
+            .future-card:hover { transform: translateY(-3px); }
+
+            .dict-entry { padding: 2em; }
+            .dict-entry:hover { transform: translateX(5px); }
+            .dict-word { min-width: 130px; }
+            .dict-word h3 { font-size: 1.4rem; }
+
+            /* Desktop: show table, hide cards */
+            .grade-table {
+                display: table;
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .grade-cards { display: none; }
+
+            .grade-table th {
+                background: var(--cream);
+                font-family: 'Patrick Hand', cursive;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 1em;
+                text-align: left;
+                color: var(--ink-light);
+                border-bottom: 2px solid #e0d5c5;
+            }
+
+            .grade-table td {
+                padding: 1em;
+                border-bottom: 1px solid #f0ebe3;
+                font-size: 0.95rem;
+            }
+
+            .grade-table tr:hover { background: var(--gold-light); }
+
+            .grade-table .grade {
+                font-family: 'Dancing Script', cursive;
+                font-size: 1.8rem;
+                color: var(--rose);
+                font-weight: 700;
+                text-align: center;
+            }
+
+            .grade-table .subject-name { font-weight: 700; color: var(--ink); }
+
+            .grade-table .subject-note {
+                font-size: 0.85rem;
+                color: var(--ink-light);
+                font-style: italic;
+            }
+
+            .caderneta { max-width: 700px; margin: 0 auto; }
+            .caderneta-header { padding: 1.5em 2em; font-size: 1.1rem; }
+            .caderneta-footer { padding: 2em; }
+            .caderneta-footer p { font-size: 1.3rem; }
+
+            .carta {
+                max-width: 650px;
+                margin: 0 auto;
+                padding: 3em;
+                box-shadow:
+                    0 0 0 1px #e0d5c5,
+                    5px 5px 0 #f5f0e8,
+                    5px 5px 0 1px #e0d5c5,
+                    10px 10px 0 #f5f0e8,
+                    10px 10px 0 1px #e0d5c5;
+            }
+            .carta p { text-indent: 2em; font-size: 1.05rem; }
+
+            .quiz-question { padding: 2em 2.5em; }
+            .quiz-container { max-width: 700px; }
+
+            .quiz-option:hover {
+                border-color: var(--rose-light);
+                background: #fff5f8;
+            }
+
+            #quiz-result .big-heart { font-size: 5rem; }
+            #quiz-result h2 { font-size: 2.5rem; }
+            #quiz-result .stamp { font-size: 1.5rem; padding: 1em 2.5em; }
+
+            .sala-body .highlight { font-size: 1.5rem; }
+
+            footer { padding: 3em 1.5em; font-size: 0.85rem; }
+            footer .forever { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════ ENTRANCE ═══════════════ -->
+    <div id="entrance">
+        <h1>Plano de Aula do Amor</h1>
+        <p class="subtitle">Uma aula preparada especialmente para a Professora Hannah</p>
+        <button onclick="enterSite()">🔔 Entrar na Sala de Aula</button>
+    </div>
+
+    <!-- ═══════════════ FLOATING HEARTS ═══════════════ -->
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="logo">📖 Plano de Aula</div>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+            <ul id="nav-menu">
+                <li><a href="#plano">Plano</a></li>
+                <li><a href="#sala1">História</a></li>
+                <li><a href="#sala2">Lições</a></li>
+                <li><a href="#capitulo7">Cap. VII</a></li>
+                <li><a href="#dicionario">Dicionário</a></li>
+                <li><a href="#caderneta">Notas</a></li>
+                <li><a href="#prova">Prova</a></li>
+                <li><a href="#diretora">Carta</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <header class="hero" id="top">
+        <div class="hero-content">
+            <div class="badge">Aula Especial — 6 Meses</div>
+            <h1>Plano de Aula<br><span>do Amor</span></h1>
+            <p class="teacher-name">Para: Profa. Hannah G. Cantonjos</p>
+            <div class="meta">
+                <strong>Matéria:</strong> Hannah — A Arte de Amar e Ser Amado<br>
+                <strong>Professor substituto:</strong> O Aluno que Aprendeu Tudo com Você<br>
+                <strong>Duração:</strong> Para sempre (com intervalo para café e beijos)<br>
+                <strong>Pré-requisito:</strong> Ter roubado meu coração
+            </div>
+            <div class="scroll-hint">↓</div>
+        </div>
+    </header>
+
+    <!-- ═══════════════ PLANO DE AULA ═══════════════ -->
+    <section id="plano">
+        <div class="reveal">
+            <p class="section-label">Estrutura da Aula</p>
+            <h2 class="section-title">O Plano de Aula <em>mais importante</em> da minha vida</h2>
+            <div class="divider"></div>
+
+            <div class="plano-card">
+                <h3>📋 Objetivo Geral</h3>
+                <p>Demonstrar, de forma teórica e prática, por que Hannah G. Cantonjos é a pessoa mais incrível que já existiu — e por que este aluno quer passar o resto da vida aprendendo com ela.</p>
+            </div>
+
+            <div class="plano-card">
+                <h3>🎯 Objetivos Específicos</h3>
+                <p>
+                    1. Reconhecer a beleza em cada detalhe seu, dos pequenos aos imensos.<br>
+                    2. Documentar 6 meses de descobertas, sorrisos e amor.<br>
+                    3. Traduzir em palavras o que o coração já sabe de cor.<br>
+                    4. Provar que o melhor aprendizado da minha vida foi amar você.
+                </p>
+            </div>
+
+            <div class="plano-grid">
+                <div class="plano-item">
+                    <div class="icon">📚</div>
+                    <h4>Conteúdo</h4>
+                    <p>6 meses de nós dois, divididos em capítulos que eu nunca quero que terminem.</p>
+                </div>
+                <div class="plano-item">
+                    <div class="icon">🔬</div>
+                    <h4>Metodologia</h4>
+                    <p>Aulas práticas de carinho, com demonstrações diárias de amor e saudade.</p>
+                </div>
+                <div class="plano-item">
+                    <div class="icon">📝</div>
+                    <h4>Avaliação</h4>
+                    <p>Uma prova final onde a resposta certa é sempre: eu te amo.</p>
+                </div>
+                <div class="plano-item">
+                    <div class="icon">🏆</div>
+                    <h4>Resultado Esperado</h4>
+                    <p>Que você saiba que é amada de um jeito que nenhum livro consegue ensinar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ SALA 1: NOSSA HISTÓRIA ═══════════════ -->
+    <section id="sala1">
+        <div class="reveal">
+            <div class="sala">
+                <div class="sala-header">
+                    <p class="room-number">Sala 01</p>
+                    <h3>Nossa História</h3>
+                    <div class="chalk-line"></div>
+                </div>
+                <div class="sala-body">
+                    <p>Cada grande história de amor tem seus capítulos. A nossa começou quando eu menos esperava — e desde então, cada dia tem sido uma página que eu nunca quero parar de ler.</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>📅 O Começo</h4>
+                            <p>Quando nossos caminhos se cruzaram pela primeira vez. Eu ainda não sabia, mas minha vida estava prestes a mudar para sempre.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>💬 As Primeiras Conversas</h4>
+                            <p>Cada mensagem era uma descoberta. Cada risada, uma confirmação de que algo especial estava nascendo entre a distância.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>💕 A Certeza</h4>
+                            <p>O momento em que eu soube que não era mais escolha — meu coração já tinha escolhido você antes de eu perceber.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>🌏 Atravessando Oceanos</h4>
+                            <p>Brasil e Filipinas. Dois países, dois idiomas, um fuso horário diferente — e nada disso importou. Porque o amor não precisa de GPS.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>📆 6 Meses</h4>
+                            <p>E aqui estamos. Mais fortes, mais apaixonados, mais certos de que isso é para sempre.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        "Eu não sabia o que era saudade de verdade até conhecer você."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ SALA 2: LIÇÕES DE HANNAH ═══════════════ -->
+    <section id="sala2">
+        <div class="reveal">
+            <div class="sala">
+                <div class="sala-header">
+                    <p class="room-number">Sala 02</p>
+                    <h3>Coisas que eu Aprendi com Você</h3>
+                    <div class="chalk-line"></div>
+                </div>
+                <div class="sala-body">
+                    <p>Você é professora de profissão, mas comigo você ensina lições que nenhuma escola oferece. Aqui estão as aulas mais importantes que você, sem perceber, me deu:</p>
+
+                    <div class="plano-grid">
+                        <div class="plano-item">
+                            <div class="icon">🤲</div>
+                            <h4>Paciência</h4>
+                            <p>Você me ensinou que amar é esperar — e que a espera vale cada segundo quando é por alguém assim.</p>
+                        </div>
+                        <div class="plano-item">
+                            <div class="icon">💪</div>
+                            <h4>Força</h4>
+                            <p>Vendo você trabalhar, estudar, cuidar de tudo — eu aprendi o que é ser forte de verdade.</p>
+                        </div>
+                        <div class="plano-item">
+                            <div class="icon">😂</div>
+                            <h4>Alegria</h4>
+                            <p>Seu sorriso me ensinou que felicidade não precisa de motivo — precisa de presença.</p>
+                        </div>
+                        <div class="plano-item">
+                            <div class="icon">🌙</div>
+                            <h4>Fé</h4>
+                            <p>Você me mostrou que Deus coloca as pessoas certas na nossa vida — mesmo quando elas estão do outro lado do mundo.</p>
+                        </div>
+                        <div class="plano-item">
+                            <div class="icon">🗣️</div>
+                            <h4>Uma Nova Língua</h4>
+                            <p>Cada palavra em Minasbate que você me ensina é uma prova de que amor também se fala em outro idioma.</p>
+                        </div>
+                        <div class="plano-item">
+                            <div class="icon">❤️</div>
+                            <h4>Amar de Verdade</h4>
+                            <p>A lição mais importante: amar é escolher a mesma pessoa todos os dias, mesmo nos dias difíceis.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        "Você me fez um aluno melhor — na escola e na vida."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ SALA 3: NOSSO FUTURO ═══════════════ -->
+    <section id="sala3">
+        <div class="reveal">
+            <div class="sala">
+                <div class="sala-header">
+                    <p class="room-number">Sala 03</p>
+                    <h3>Nosso Futuro</h3>
+                    <div class="chalk-line"></div>
+                </div>
+                <div class="sala-body">
+                    <p>Se os 6 meses que passaram foram assim, imagina o que vem pela frente. Aqui estão os sonhos que eu quero realizar com você:</p>
+
+                    <div class="future-grid">
+                        <div class="future-card">
+                            <div class="emoji">🇧🇷</div>
+                            <h4>Brasil</h4>
+                            <p>Quero te levar pra conhecer cada cantinho do meu país.</p>
+                        </div>
+                        <div class="future-card">
+                            <div class="emoji">🇵🇭</div>
+                            <h4>Filipinas</h4>
+                            <p>Quero conhecer sua terra, sua família, sua comida.</p>
+                        </div>
+                        <div class="future-card">
+                            <div class="emoji">🏡</div>
+                            <h4>Nossa Casa</h4>
+                            <p>Café brasileiro e adobo filipino na mesma cozinha.</p>
+                        </div>
+                        <div class="future-card">
+                            <div class="emoji">💍</div>
+                            <h4>Uma Promessa</h4>
+                            <p>A única certeza que eu preciso é que será com você.</p>
+                        </div>
+                        <div class="future-card">
+                            <div class="emoji">✈️</div>
+                            <h4>Viagens</h4>
+                            <p>Cada carimbo no passaporte, uma memória nossa.</p>
+                        </div>
+                        <div class="future-card">
+                            <div class="emoji">👨‍👩‍👧</div>
+                            <h4>Família</h4>
+                            <p>O maior sonho: construir algo lindo e eterno, juntos.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        "O meu futuro preferido é qualquer um que tenha você nele."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ CAPÍTULO VII: RESPOSTA ═══════════════ -->
+    <section id="capitulo7">
+        <div class="reveal">
+            <p class="section-label">Capítulo VII</p>
+            <h2 class="section-title">A Resposta do <em>Participante Masculino</em></h2>
+            <div class="divider"></div>
+            <p class="section-intro">
+                Você fez o P.A.G.E.S. pra mim. Cada capítulo me tocou de um jeito que eu não sabia que era possível. Agora, professora, é minha vez de responder — parágrafo por parágrafo, com o coração aberto.
+            </p>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo I</span>
+                <p class="she-said">"Quando ela disse que me escolheu..."</p>
+                <p class="he-says">Eu preciso que você saiba: eu também te escolhi. Não foi por acaso, não foi por sorte. Foi porque, no meio de um mundo inteiro, o meu coração reconheceu o seu. E desde aquele dia, eu escolho você de novo a cada manhã.</p>
+            </div>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo II</span>
+                <p class="she-said">"Quando ela disse que tem orgulho de mim..."</p>
+                <p class="he-says">Hannah, se você soubesse o orgulho que eu sinto de você. De ver você ensinando, se dedicando, sendo essa mulher forte e linda. Você é a pessoa mais incrível que eu já conheci, e eu tenho orgulho de ser seu.</p>
+            </div>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo III</span>
+                <p class="she-said">"Quando ela falou sobre a distância..."</p>
+                <p class="he-says">A distância dói. Cada fuso horário pesa. Mas eu prefiro mil vezes te amar de longe do que não te amar de jeito nenhum. E cada dia que passa é um dia a menos até o dia em que essa distância vai acabar.</p>
+            </div>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo IV</span>
+                <p class="she-said">"Quando ela falou sobre nosso futuro..."</p>
+                <p class="he-says">Eu li esse capítulo com o coração acelerado, porque seus sonhos são os mesmos que os meus. Cada plano que você fez, eu faço questão de realizar. Esse futuro é nosso, e nada vai mudar isso.</p>
+            </div>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo V</span>
+                <p class="she-said">"Quando ela disse que me ama..."</p>
+                <p class="he-says">E eu te amo. Te amo com uma força que às vezes me assusta, porque eu não sabia que era capaz de sentir algo assim. Você me ensinou a amar de verdade — e agora eu sou seu aluno para sempre.</p>
+            </div>
+
+            <div class="resposta-card">
+                <span class="chapter-badge">Capítulo VI</span>
+                <p class="she-said">"Quando ela escreveu cada palavra com carinho..."</p>
+                <p class="he-says">Eu li tudo. Cada palavra, cada vírgula, cada espaço entre as linhas. E em cada um deles eu senti o quanto você me ama. Este site é a minha forma de dizer: eu recebi tudo, guardei tudo, e vou honrar cada palavra sua.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ DICIONÁRIO ═══════════════ -->
+    <div class="dict-bg" id="dicionario">
+        <section>
+            <div class="reveal">
+                <p class="section-label">Vocabulário do Coração</p>
+                <h2 class="section-title">Dicionário <em>Minasbate — Português</em></h2>
+                <div class="divider"></div>
+                <p class="section-intro">
+                    Cada palavra que você me ensina se torna uma memória nossa. Este é o dicionário mais bonito do mundo — porque só nós dois entendemos.
+                </p>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Palangga</h3>
+                        <span class="pron">/pa·lang·ga/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">s. Amor, querido(a), a pessoa que você ama.</span></p>
+                        <p class="memory">💛 "A primeira palavra que você me ensinou — e a mais importante. Palangga ko ikaw, sempre."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Mahál</h3>
+                        <span class="pron">/ma·hal/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">adj. Amor, precioso, valioso. Mahal kita = Eu te amo.</span></p>
+                        <p class="memory">💛 "Quando você me disse 'Mahal kita' pela primeira vez, eu senti que meu coração ficou fluente."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Pangga</h3>
+                        <span class="pron">/pang·ga/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">s. Carinho, amor, apelido carinhoso.</span></p>
+                        <p class="memory">💛 "A forma como você me chama quando está com saudade — e que faz meu dia inteiro melhor."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Gwapo</h3>
+                        <span class="pron">/gwa·po/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">adj. Bonito, lindo (masculino).</span></p>
+                        <p class="memory">💛 "Você me chama assim e eu derreto. Mas gwapa é você, Hannah — a mais linda do mundo."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Gwapa</h3>
+                        <span class="pron">/gwa·pa/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">adj. Linda, bonita, formosa.</span></p>
+                        <p class="memory">💛 "A palavra que melhor te descreve. Gwapa ko — minha linda. Simples assim."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Kaon</h3>
+                        <span class="pron">/ka·on/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">v. Comer, refeição.</span></p>
+                        <p class="memory">💛 "Você sempre pergunta se eu já comi. Esse cuidado é o amor em forma de pergunta."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Salamat</h3>
+                        <span class="pron">/sa·la·mat/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">interj. Obrigado(a), gratidão.</span></p>
+                        <p class="memory">💛 "Salamat, Hannah. Por tudo. Por existir, por me escolher, por cada segundo."</p>
+                    </div>
+                </div>
+
+                <div class="dict-entry">
+                    <div class="dict-word">
+                        <h3>Tulog</h3>
+                        <span class="pron">/tu·log/</span>
+                    </div>
+                    <div class="dict-def">
+                        <p><span class="meaning">v. Dormir, descansar.</span></p>
+                        <p class="memory">💛 "Nossas noites — quando eu digo 'boa noite' e você diz 'tulog na' com aquela voz doce."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══════════════ CADERNETA DE NOTAS ═══════════════ -->
+    <div class="caderneta-bg" id="caderneta">
+        <section>
+            <div class="reveal">
+                <p class="section-label">Avaliação Oficial</p>
+                <h2 class="section-title">Caderneta de Notas da <em>Sra. Monteiro</em></h2>
+                <div class="divider"></div>
+
+                <div class="caderneta">
+                    <div class="caderneta-header">
+                        <span>📋 Boletim — Hannah G. Cantonjos</span>
+                        <span>2024-2025</span>
+                    </div>
+
+                    <!-- MOBILE: card layout -->
+                    <div class="grade-cards">
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">❤️ Beleza</span>
+                                <span class="subject-note">Supera todas as expectativas. Literalmente a mais linda.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">🤲 Paciência</span>
+                                <span class="subject-note">Me aguentou por 6 meses. Merece nota extra.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">🧠 Inteligência</span>
+                                <span class="subject-note">Professora dedicada, pesquisadora brilhante.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">💛 Coração</span>
+                                <span class="subject-note">O coração mais generoso que eu já conheci.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">😂 Humor</span>
+                                <span class="subject-note">Consegue me fazer rir nos piores dias.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">💪 Dedicação</span>
+                                <span class="subject-note">Tudo que faz, faz com o coração. P.A.G.E.S. é a prova.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">🌙 Fé</span>
+                                <span class="subject-note">Uma mulher de Deus que me inspira a ser melhor.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                        <div class="grade-card-item">
+                            <div class="grade-card-info">
+                                <span class="subject-name">💋 Carinho</span>
+                                <span class="subject-note">Cada mensagem, cada gesto — puro amor.</span>
+                            </div>
+                            <div class="grade-card-grade">10</div>
+                        </div>
+                    </div>
+
+                    <!-- DESKTOP: table layout -->
+                    <table class="grade-table">
+                        <thead>
+                            <tr>
+                                <th>Disciplina</th>
+                                <th>Observação</th>
+                                <th style="text-align:center">Nota</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="subject-name">❤️ Beleza</span></td>
+                                <td><span class="subject-note">Supera todas as expectativas. Literalmente a mulher mais linda.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">🤲 Paciência</span></td>
+                                <td><span class="subject-note">Me aguentou por 6 meses. Merece nota extra.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">🧠 Inteligência</span></td>
+                                <td><span class="subject-note">Professora dedicada, pesquisadora brilhante, mente admirável.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">💛 Coração</span></td>
+                                <td><span class="subject-note">O coração mais lindo e generoso que eu já conheci.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">😂 Humor</span></td>
+                                <td><span class="subject-note">Consegue me fazer rir nos piores dias. Talento nato.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">💪 Dedicação</span></td>
+                                <td><span class="subject-note">Tudo que faz, faz com o coração. P.A.G.E.S. é a prova.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">🌙 Fé</span></td>
+                                <td><span class="subject-note">Uma mulher de Deus que me inspira a ser melhor.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="subject-name">💋 Carinho</span></td>
+                                <td><span class="subject-note">Cada mensagem, cada ligação, cada gesto — puro amor.</span></td>
+                                <td class="grade">10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="caderneta-footer">
+                        <h4>📝 Observação Final do Professor:</h4>
+                        <p>"Aluna aprovada com distinção máxima. Aprovada para ser amada pelo Sr. Monteiro para sempre. Sem recuperação — porque não há nada a recuperar. Ela é perfeita."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══════════════ PROVA FINAL (QUIZ) ═══════════════ -->
+    <div class="quiz-bg" id="prova">
+        <section>
+            <div class="reveal">
+                <p class="section-label">Avaliação Final</p>
+                <h2 class="section-title">Prova Final — <em>Será que Você Passa?</em></h2>
+                <div class="divider"></div>
+                <p class="section-intro">
+                    Atenção, aluna Hannah: esta prova vale 100% da nota do semestre do amor. Concentre-se, responda com o coração, e boa sorte (você não precisa).
+                </p>
+
+                <div class="quiz-container">
+                    <div class="quiz-progress" id="quiz-progress"></div>
+
+                    <div class="quiz-question active" data-q="0">
+                        <p class="q-number">Questão 01 de 06</p>
+                        <h3>Qual foi a primeira coisa que eu amei em você?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">Minha beleza</button>
+                            <button class="quiz-option" data-correct="true">Meu sorriso</button>
+                            <button class="quiz-option" data-correct="false">Minha inteligência</button>
+                            <button class="quiz-option" data-correct="false">Meu sotaque</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-q="1">
+                        <p class="q-number">Questão 02 de 06</p>
+                        <h3>O que eu mais sinto falta quando estamos longe?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">Suas mensagens</button>
+                            <button class="quiz-option" data-correct="false">Suas fotos</button>
+                            <button class="quiz-option" data-correct="true">Tudo. Absolutamente tudo.</button>
+                            <button class="quiz-option" data-correct="false">Suas comidas</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-q="2">
+                        <p class="q-number">Questão 03 de 06</p>
+                        <h3>Se eu pudesse te dar uma nota, qual seria?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">9</button>
+                            <button class="quiz-option" data-correct="false">9.5</button>
+                            <button class="quiz-option" data-correct="false">10</button>
+                            <button class="quiz-option" data-correct="true">10 não é suficiente — infinito.</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-q="3">
+                        <p class="q-number">Questão 04 de 06</p>
+                        <h3>O que significa "Palangga" pra mim?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">Uma palavra bonita</button>
+                            <button class="quiz-option" data-correct="true">Você. Só você.</button>
+                            <button class="quiz-option" data-correct="false">Uma saudação</button>
+                            <button class="quiz-option" data-correct="false">Um lugar nas Filipinas</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-q="4">
+                        <p class="q-number">Questão 05 de 06</p>
+                        <h3>Quanto tempo eu quero ficar com você?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">Mais 6 meses</button>
+                            <button class="quiz-option" data-correct="false">Alguns anos</button>
+                            <button class="quiz-option" data-correct="false">Até ficarmos velhinhos</button>
+                            <button class="quiz-option" data-correct="true">Para sempre — e depois mais um pouco.</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-q="5">
+                        <p class="q-number">Questão 06 de 06</p>
+                        <h3>Qual é a resposta certa pra qualquer pergunta sobre nós?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-option" data-correct="false">Talvez</button>
+                            <button class="quiz-option" data-correct="false">Vamos ver</button>
+                            <button class="quiz-option" data-correct="true">Eu te amo, Hannah.</button>
+                            <button class="quiz-option" data-correct="false">Depende</button>
+                        </div>
+                    </div>
+
+                    <div id="quiz-result">
+                        <div class="big-heart">💖</div>
+                        <h2>Você Passou!</h2>
+                        <p class="score" id="quiz-score"></p>
+                        <p class="final-message">
+                            Parabéns, Profa. Hannah. Você foi aprovada com nota máxima — como em tudo na vida. E o prêmio?
+                        </p>
+                        <div class="stamp">✨ EU TE AMAR PRA SEMPRE ✨</div>
+                        <p class="final-message" style="margin-top: 1.5em; font-style: italic;">
+                            Essa é a única matéria que eu nunca quero ter formatura —<br>porque eu quero ser seu aluno para sempre.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══════════════ SALA DA DIRETORA (CARTA) ═══════════════ -->
+    <div class="carta-bg" id="diretora">
+        <section>
+            <div class="reveal">
+                <p class="section-label">Sala da Diretora</p>
+                <h2 class="section-title">Uma Carta <em>Só Pra Você</em></h2>
+                <div class="divider"></div>
+
+                <div class="carta">
+                    <p class="dear">Minha querida Hannah,</p>
+
+                    <p>Se você chegou até aqui, significa que leu tudo — cada sala, cada nota, cada palavra. E eu espero que você tenha sentido, em cada letra, o quanto você é importante pra mim.</p>
+
+                    <p>Eu criei esse site inteiro porque eu queria que você soubesse: eu presto atenção. Quando você fez o P.A.G.E.S. pra mim, eu li cada página com o coração apertado de amor. E eu pensei: "Como é que alguém tão incrível me escolheu?"</p>
+
+                    <p>Você é professora. Você ensina crianças a ler, escrever, pensar. Mas comigo, você ensinou algo maior: você me ensinou a amar de um jeito que eu não sabia que existia. Um amor que atravessa oceanos, fusos horários, idiomas diferentes — e mesmo assim chega intacto, forte, verdadeiro.</p>
+
+                    <p>Esses 6 meses foram os mais bonitos da minha vida. E eu sei que os próximos vão ser ainda melhores, porque a cada dia eu descubro um motivo novo pra te amar mais.</p>
+
+                    <p>Então, Profa. Hannah G. Cantonjos, futura Sra. Monteiro: obrigado por ser minha professora, minha parceira, minha melhor amiga, meu amor. Obrigado por cada "palangga ko ikaw", cada "mahal kita", cada sorriso na tela do celular.</p>
+
+                    <p>Eu sou seu. Hoje, amanhã, e em todos os capítulos que ainda vamos escrever juntos.</p>
+
+                    <div class="signature">
+                        Com todo o meu amor,<br>
+                        Seu Aluno Favorito ❤️
+                        <span>— O autor do Capítulo VII</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="hearts">💕 💖 💕</div>
+        <p>Plano de Aula do Amor — Para Hannah G. Cantonjos</p>
+        <p>Matéria: Amor Eterno | Professor: Seu Aluno Favorito</p>
+        <p class="forever">Para sempre, palangga ko. 🇧🇷❤️🇵🇭</p>
+    </footer>
+
+    <!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+    <script>
+        // ──── ENTRANCE ────
+        function enterSite() {
+            const entrance = document.getElementById('entrance');
+            entrance.classList.add('fade-out');
+            setTimeout(() => {
+                entrance.style.display = 'none';
+                document.getElementById('main-nav').classList.add('visible');
+                createFloatingHearts();
+            }, 1000);
+        }
+
+        // ──── MOBILE MENU ────
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('open');
+        }
+
+        // Close menu on link click or outside tap
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('nav-menu');
+            if (menu.classList.contains('open') && !nav.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+
+        // ──── SCROLL REVEAL ────
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ──── ACTIVE NAV ────
+        const allSections = document.querySelectorAll('[id]');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                scrollTimeout = null;
+                let current = '';
+                allSections.forEach(section => {
+                    const top = section.offsetTop - 100;
+                    if (window.scrollY >= top) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }, 100);
+        }, { passive: true });
+
+        // ──── FLOATING HEARTS (reduced on mobile) ────
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            const hearts = ['💕', '❤️', '💖', '💗', '🤍', '💛', '🩷'];
+            const isMobile = window.innerWidth < 600;
+            const interval = isMobile ? 5000 : 3000;
+
+            setInterval(() => {
+                const heart = document.createElement('span');
+                heart.classList.add('float-heart');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (0.6 + Math.random() * 0.8) + 'rem';
+                heart.style.animationDuration = (10 + Math.random() * 12) + 's';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 22000);
+            }, interval);
+        }
+
+        // ──── QUIZ ────
+        const totalQuestions = 6;
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = new Set();
+
+        const progressContainer = document.getElementById('quiz-progress');
+        for (let i = 0; i < totalQuestions; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('quiz-dot');
+            if (i === 0) dot.classList.add('current');
+            progressContainer.appendChild(dot);
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const questionEl = this.closest('.quiz-question');
+                const qIndex = parseInt(questionEl.dataset.q);
+
+                if (answered.has(qIndex)) return;
+                answered.add(qIndex);
+
+                const isCorrect = this.dataset.correct === 'true';
+                if (isCorrect) {
+                    score++;
+                    this.classList.add('correct');
+                } else {
+                    this.classList.add('wrong');
+                    questionEl.querySelectorAll('.quiz-option').forEach(opt => {
+                        if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                    });
+                }
+
+                questionEl.querySelectorAll('.quiz-option').forEach(opt => {
+                    if (opt.dataset.correct !== 'true' && !opt.classList.contains('wrong')) {
+                        opt.style.opacity = '0.5';
+                    }
+                    opt.style.pointerEvents = 'none';
+                });
+
+                const dots = progressContainer.querySelectorAll('.quiz-dot');
+                dots[qIndex].classList.add('done');
+                dots[qIndex].classList.remove('current');
+
+                setTimeout(() => {
+                    questionEl.classList.remove('active');
+                    currentQuestion++;
+
+                    if (currentQuestion < totalQuestions) {
+                        const nextQ = document.querySelector('.quiz-question[data-q="' + currentQuestion + '"]');
+                        nextQ.classList.add('active');
+                        dots[currentQuestion].classList.add('current');
+                        nextQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        const result = document.getElementById('quiz-result');
+                        result.classList.add('show');
+                        document.getElementById('quiz-score').textContent =
+                            'Nota: ' + score + '/' + totalQuestions + ' — Mas na real, não importa a nota. Você já ganhou meu coração.';
+                        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        celebrationBurst();
+                    }
+                }, 1500);
+            });
+        });
+
+        function celebrationBurst() {
+            const container = document.getElementById('hearts-container');
+            const hearts = ['💖', '🎉', '✨', '💕', '🥰', '💗', '🩷', '⭐'];
+            const count = window.innerWidth < 600 ? 15 : 30;
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.classList.add('float-heart');
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.fontSize = (0.8 + Math.random() * 1.5) + 'rem';
+                    heart.style.animationDuration = (5 + Math.random() * 8) + 's';
+                    container.appendChild(heart);
+                    setTimeout(() => heart.remove(), 15000);
+                }, i * 120);
+            }
+        }
+    </script>
+</body>
+</html>

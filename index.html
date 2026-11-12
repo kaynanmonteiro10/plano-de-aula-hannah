@@ -906,7 +906,7 @@
         }
 
         /* ═══════════════════════════════════════ */
-        /*       SALA DA DIRETORA (LIVRO & CADEADO)*/
+        /*       SALA DA DIRETORA (LIVRO REALISTA 3D) */
         /* ═══════════════════════════════════════ */
         .carta-bg {
             background:
@@ -985,11 +985,12 @@
             transform: scale(0.98);
         }
 
-        /* Letters Book Container */
+        /* Container do Livro Folheável */
         .book-container {
             display: none;
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
+            perspective: 1800px;
             animation: bookOpen 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -1002,18 +1003,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
             padding: 0 0.5em;
         }
 
         .book-counter {
             font-family: 'Patrick Hand', cursive;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--rose);
             background: var(--paper);
-            padding: 0.3em 1em;
+            padding: 0.4em 1.2em;
             border-radius: 20px;
             border: 1px solid var(--rose-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .book-relock {
@@ -1032,138 +1034,228 @@
             background: var(--gold-light);
         }
 
-        /* Carta / Livro */
-        .carta {
-            background: var(--paper);
-            border: 1px solid #e0d5c5;
-            border-radius: 8px;
-            padding: 2.2em 1.5em;
-            box-shadow:
-                3px 3px 0 #f5f0e8,
-                3px 3px 0 1px #e0d5c5,
-                6px 6px 0 #f5f0e8,
-                6px 6px 0 1px #e0d5c5,
-                9px 9px 0 #f5f0e8,
-                9px 9px 0 1px #e0d5c5;
+        /* O Livro Realista */
+        .realistic-book {
             position: relative;
-            min-height: 480px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: #fbf7ee;
+            border-radius: 12px;
+            box-shadow:
+                -10px 0 20px rgba(0,0,0,0.08),
+                0 15px 35px rgba(0,0,0,0.15),
+                inset 15px 0 30px rgba(0,0,0,0.04);
+            border: 1px solid #e2d7c5;
+            padding: 1.5em;
+            overflow: hidden;
+            touch-action: pan-y;
         }
 
+        /* Lombada do Livro (Spine) */
+        .book-spine-effect {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 24px;
+            background: linear-gradient(90deg, rgba(62,39,35,0.15) 0%, rgba(62,39,35,0.05) 50%, transparent 100%);
+            pointer-events: none;
+            z-index: 5;
+            border-right: 1px dashed rgba(212,160,23,0.3);
+        }
+
+        /* Abas laterais estilo orelha de página para clicar e folhear */
+        .page-curl-left, .page-curl-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 90px;
+            background: rgba(253, 246, 236, 0.92);
+            backdrop-filter: blur(4px);
+            border: 1px solid #e0d5c5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--rose);
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            user-select: none;
+        }
+
+        .page-curl-left {
+            left: 0;
+            border-radius: 0 16px 16px 0;
+            border-left: none;
+        }
+
+        .page-curl-right {
+            right: 0;
+            border-radius: 16px 0 0 16px;
+            border-right: none;
+        }
+
+        .page-curl-left:hover:not(.disabled), .page-curl-right:hover:not(.disabled) {
+            background: var(--rose);
+            color: #fff;
+            width: 52px;
+            box-shadow: 0 6px 20px rgba(194, 24, 91, 0.25);
+        }
+
+        .page-curl-left.disabled, .page-curl-right.disabled {
+            opacity: 0.15;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Páginas com animação 3D de virar folha */
         .carta-page {
             display: none;
-            animation: pageTurn 0.5s ease both;
+            position: relative;
+            z-index: 2;
+            padding: 1.5em 2em 1.5em 2.8em;
+            min-height: 520px;
+            transform-origin: left center;
         }
 
         .carta-page.active-page {
             display: block;
+            animation: flipInForward 0.65s cubic-bezier(0.25, 1, 0.5, 1) both;
         }
 
-        @keyframes pageTurn {
-            from { opacity: 0; transform: translateX(15px); }
-            to { opacity: 1; transform: translateX(0); }
+        .carta-page.turning-back {
+            display: block;
+            animation: flipInBackward 0.65s cubic-bezier(0.25, 1, 0.5, 1) both;
+        }
+
+        @keyframes flipInForward {
+            0% {
+                opacity: 0;
+                transform: rotateY(-65deg) scale(0.96);
+                box-shadow: -20px 0 25px rgba(0,0,0,0.25);
+            }
+            100% {
+                opacity: 1;
+                transform: rotateY(0deg) scale(1);
+                box-shadow: none;
+            }
+        }
+
+        @keyframes flipInBackward {
+            0% {
+                opacity: 0;
+                transform: rotateY(65deg) scale(0.96);
+                box-shadow: 20px 0 25px rgba(0,0,0,0.25);
+            }
+            100% {
+                opacity: 1;
+                transform: rotateY(0deg) scale(1);
+                box-shadow: none;
+            }
         }
 
         .carta-badge-tag {
             display: inline-block;
             font-family: 'Patrick Hand', cursive;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             background: var(--gold-light);
             color: #b8860b;
             border: 1px solid var(--gold);
-            padding: 0.2em 0.9em;
+            padding: 0.25em 1em;
             border-radius: 20px;
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
+            letter-spacing: 0.5px;
         }
 
-        .carta .dear {
+        .carta-page .dear {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--rose);
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
+            line-height: 1.3;
         }
 
-        .carta p {
-            font-size: 0.94rem;
-            line-height: 1.9;
+        .carta-page p {
+            font-size: 0.98rem;
+            line-height: 2;
             color: var(--ink-light);
-            margin-bottom: 0.9em;
-            text-indent: 1.5em;
+            margin-bottom: 1.1em;
+            text-indent: 1.8em;
+            text-align: justify;
         }
 
-        .carta .signature {
+        .carta-page .signature {
             text-align: right;
-            margin-top: 1.5em;
+            margin-top: 2em;
+            padding-top: 1em;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--ink);
             line-height: 1.6;
         }
 
-        .carta .signature span {
+        .carta-page .signature span {
             display: block;
             font-family: 'Lora', serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-style: italic;
             color: var(--ink-light);
             margin-top: 0.2em;
         }
 
-        /* Paginação / Folhear */
-        .book-pagination {
+        /* Rodapé de Folhear estilo Livro */
+        .book-turn-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2em;
-            padding-top: 1.5em;
-            border-top: 1px dashed #e0d5c5;
+            margin-top: 1.5em;
+            padding: 1em 1.5em 0.5em;
+            border-top: 1px dashed rgba(212,160,23,0.3);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 0.95rem;
+            color: var(--ink-light);
         }
 
-        .btn-page {
-            background: var(--paper);
-            border: 2px solid var(--rose-light);
-            color: var(--rose);
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.05rem;
-            padding: 0.6em 1.2em;
-            border-radius: 30px;
+        .turn-hint-link {
             cursor: pointer;
-            transition: all 0.2s ease;
+            color: var(--rose);
             display: inline-flex;
             align-items: center;
             gap: 0.4em;
+            transition: transform 0.2s;
+            font-size: 1.05rem;
         }
 
-        .btn-page:hover:not(:disabled) {
-            background: var(--rose);
-            color: #fff;
-            border-color: var(--rose);
+        .turn-hint-link:hover {
+            transform: translateX(3px);
+            color: var(--rose-dark);
         }
 
-        .btn-page:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-            border-color: #ddd;
-            color: #999;
+        .turn-hint-link.prev-link:hover {
+            transform: translateX(-3px);
         }
 
-        .page-dots {
+        .turn-hint-link.disabled {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .book-bullets {
             display: flex;
-            gap: 0.5em;
+            gap: 0.6em;
         }
 
-        .page-dot {
-            width: 9px;
-            height: 9px;
+        .book-bullet {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #e0d5c5;
+            background: #dfd4c4;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .page-dot.active {
+        .book-bullet.active {
             background: var(--rose);
             transform: scale(1.3);
         }
@@ -1602,8 +1694,8 @@
                         </div>
                         <div class="plano-item">
                             <div class="icon">🗣️</div>
-                            <h4>Uma Nova Língua</h4>
-                            <p>Cada palavra em Minasbate que você me ensina é uma prova de que amor também se fala em outro idioma.</p>
+                            <h4>As Primeiras Palavras</h4>
+                            <p>Mesmo dando os primeiros passos no seu idioma, cada termo que você me conta desperta a minha vontade de aprender tudo com você.</p>
                         </div>
                         <div class="plano-item">
                             <div class="icon">❤️</div>
@@ -1726,10 +1818,10 @@
         <section>
             <div class="reveal">
                 <p class="section-label">Vocabulário do Coração</p>
-                <h2 class="section-title">Dicionário <em>Minasbate — Português</em></h2>
+                <h2 class="section-title">Nossas Primeiras Palavras <em>Minasbate — Português</em></h2>
                 <div class="divider"></div>
                 <p class="section-intro">
-                    Cada palavra que você me ensina se torna uma memória nossa. Este é o dicionário mais bonito do mundo — porque só nós dois entendemos.
+                    Você ainda está começando a me ensinar a sua língua, e eu sei que ainda tenho muito para aprender. Mas estas primeiras palavras já viraram tesouros entre nós dois:
                 </p>
 
                 <div class="dict-entry">
@@ -1738,30 +1830,8 @@
                         <span class="pron">/pa·lang·ga/</span>
                     </div>
                     <div class="dict-def">
-                        <p><span class="meaning">s. Amor, querido(a), a pessoa que você ama.</span></p>
-                        <p class="memory">💛 "A primeira palavra que você me ensinou — e a mais importante. Palangga ko ikaw, sempre."</p>
-                    </div>
-                </div>
-
-                <div class="dict-entry">
-                    <div class="dict-word">
-                        <h3>Mahál</h3>
-                        <span class="pron">/ma·hal/</span>
-                    </div>
-                    <div class="dict-def">
-                        <p><span class="meaning">adj. Amor, precioso, valioso. Mahal kita = Eu te amo.</span></p>
-                        <p class="memory">💛 "Quando você me disse 'Mahal kita' pela primeira vez, eu senti que meu coração ficou fluente."</p>
-                    </div>
-                </div>
-
-                <div class="dict-entry">
-                    <div class="dict-word">
-                        <h3>Pangga</h3>
-                        <span class="pron">/pang·ga/</span>
-                    </div>
-                    <div class="dict-def">
-                        <p><span class="meaning">s. Carinho, amor, apelido carinhoso.</span></p>
-                        <p class="memory">💛 "A forma como você me chama quando está com saudade — e que faz meu dia inteiro melhor."</p>
+                        <p><span class="meaning">s. Amor, querido(a), a pessoa mais amada.</span></p>
+                        <p class="memory">💛 "A palavra mais linda que você já me apresentou. Palangga ko ikaw, sempre."</p>
                     </div>
                 </div>
 
@@ -1772,7 +1842,7 @@
                     </div>
                     <div class="dict-def">
                         <p><span class="meaning">adj. Bonito, lindo (masculino).</span></p>
-                        <p class="memory">💛 "Você me chama assim e eu derreto. Mas gwapa é você, Hannah — a mais linda do mundo."</p>
+                        <p class="memory">💛 "Quando você me chama de gwapo, eu fico sem jeito. Mas a mais gwapa do mundo é você, Hannah."</p>
                     </div>
                 </div>
 
@@ -1782,19 +1852,8 @@
                         <span class="pron">/gwa·pa/</span>
                     </div>
                     <div class="dict-def">
-                        <p><span class="meaning">adj. Linda, bonita, formosa.</span></p>
-                        <p class="memory">💛 "A palavra que melhor te descreve. Gwapa ko — minha linda. Simples assim."</p>
-                    </div>
-                </div>
-
-                <div class="dict-entry">
-                    <div class="dict-word">
-                        <h3>Kaon</h3>
-                        <span class="pron">/ka·on/</span>
-                    </div>
-                    <div class="dict-def">
-                        <p><span class="meaning">v. Comer, refeição.</span></p>
-                        <p class="memory">💛 "Você sempre pergunta se eu já comi. Esse cuidado é o amor em forma de pergunta."</p>
+                        <p><span class="meaning">adj. Linda, formosa, maravilhosa.</span></p>
+                        <p class="memory">💛 "A palavra perfeita para definir a minha professora favorita."</p>
                     </div>
                 </div>
 
@@ -1804,19 +1863,19 @@
                         <span class="pron">/sa·la·mat/</span>
                     </div>
                     <div class="dict-def">
-                        <p><span class="meaning">interj. Obrigado(a), gratidão.</span></p>
-                        <p class="memory">💛 "Salamat, Hannah. Por tudo. Por existir, por me escolher, por cada segundo."</p>
+                        <p><span class="meaning">interj. Obrigado(a), gratidão eterna.</span></p>
+                        <p class="memory">💛 "Salamat por me escolher, por sua paciência e por me ensinar um pouquinho mais a cada dia."</p>
                     </div>
                 </div>
 
                 <div class="dict-entry">
                     <div class="dict-word">
-                        <h3>Tulog</h3>
-                        <span class="pron">/tu·log/</span>
+                        <h3>Próximas Lições</h3>
+                        <span class="pron">/em breve/</span>
                     </div>
                     <div class="dict-def">
-                        <p><span class="meaning">v. Dormir, descansar.</span></p>
-                        <p class="memory">💛 "Nossas noites — quando eu digo 'boa noite' e você diz 'tulog na' com aquela voz doce."</p>
+                        <p><span class="meaning">Caderno aberto para todas as palavras que você ainda vai me ensinar.</span></p>
+                        <p class="memory">💛 "Sou seu aluno mais dedicado. Pode preparar a próxima aula que eu quero aprender tudo!"</p>
                     </div>
                 </div>
             </div>
@@ -2080,84 +2139,87 @@
                 <!-- LIVRO DE CARTAS DESBLOQUEADO (FOLHEAR) -->
                 <div class="book-container" id="book-screen">
                     <div class="book-controls-top">
-                        <span class="book-counter" id="page-counter">Carta 1 de 4</span>
+                        <span class="book-counter" id="page-counter">📖 Página 1 de 4</span>
                         <button class="book-relock" onclick="lockLetters()" title="Trancar novamente">🔒 Trancar Pasta</button>
                     </div>
 
-                    <div class="carta">
+                    <div class="realistic-book" id="realistic-book-el">
+                        <div class="book-spine-effect"></div>
+
+                        <!-- Orelhas laterais de folhear -->
+                        <div class="page-curl-left disabled" id="curl-left-btn" onclick="turnBookPage(-1)" title="Folhear para trás">❮</div>
+                        <div class="page-curl-right" id="curl-right-btn" onclick="turnBookPage(1)" title="Folhear para frente">❯</div>
+
                         <!-- PÁGINA 1 -->
                         <div class="carta-page active-page" data-page="0">
-                            <span class="carta-badge-tag">Carta 01 • O Começo de Tudo</span>
+                            <span class="carta-badge-tag">Página 01 • O Começo e a Minha Leitura do P.A.G.E.S.</span>
                             <p class="dear">Minha querida Hannah,</p>
-                            <p>Se você abriu esta sala, significa que você teve a curiosidade de ver o que eu guardava com tanto carinho. E a verdade é que cada pedaço meu já te pertence.</p>
-                            <p>Eu criei esse espaço inteiro porque eu queria que você soubesse: eu presto atenção em tudo. Quando você fez o P.A.G.E.S. pra mim, eu li cada linha com o coração disparado. E a pergunta que não saía da minha cabeça era: "Como é que alguém tão incrível no mundo me escolheu?"</p>
-                            <p>Você é professora de profissão, ensina mentes brilhantes todos os dias. Mas comigo você fez algo muito maior: você me ensinou a amar de um jeito que eu achava que só existia em filme.</p>
+                            <p>Se você abriu este caderno secreto, significa que você teve a curiosidade de vir até a sala da diretora para ler o que guardei com tanto carinho. E a primeira coisa que eu quero que você saiba com todas as letras é: eu li cada palavra do que você escreveu para mim.</p>
+                            <p>Quando recebi a sua pesquisa, o seu P.A.G.E.S., não li como quem apenas passa os olhos por um texto. Eu li devagar, sentindo cada frase, me emocionando com a forma como você expressou seus sentimentos, sua fé e a sua visão de nós dois. Naquele momento, eu entendi a sorte e a bênção que é ter uma mulher como você na minha vida.</p>
+                            <p>Você é professora. Seu trabalho diário é guiar mentes, corrigir com paciência, ensinar o caminho e incentivar o crescimento de cada aluno. Mas você não tem noção de que, sem nem perceber, você me transformou no seu aluno mais dedicado: aquele que aprende todos os dias com a sua pureza, com a sua doçura e com a sua força inabalável.</p>
                             <div class="signature">
-                                Com todo o meu amor,<br>
-                                Seu Aluno Favorito ❤️
-                                <span>— O autor do Capítulo VII</span>
+                                Com todo o meu amor e admiração,<br>
+                                Kaynan Monteiro ❤️
+                                <span>— O participante masculino que te ama</span>
                             </div>
                         </div>
 
                         <!-- PÁGINA 2 -->
                         <div class="carta-page" data-page="1">
-                            <span class="carta-badge-tag">Carta 02 • Sobre a Distância e o Oceano</span>
-                            <p class="dear">Minha doce palangga,</p>
-                            <p>Às vezes olho para o relógio e calculo mentalmente quantas horas de diferença nos separam. Olho no mapa mundi e vejo um oceano inteiro entre o Brasil e as Filipinas. Mas quer saber de uma coisa? Nunca me senti tão perto de alguém.</p>
-                            <p>A distância pode impedir um abraço físico por enquanto, mas ela nunca teve o poder de diminuir o que sinto quando recebo uma mensagem sua de bom dia ou um áudio seu me chamando de "gwapo".</p>
-                            <p>Cada quilômetro entre nós não é uma barreira: é apenas a prova do tamanho do nosso amor, que não cabe em uma cidade só. Em breve não haverá mais tela de celular entre nós.</p>
+                            <span class="carta-badge-tag">Página 02 • O Oceano, as Horas e a Certeza</span>
+                            <p class="dear">Minha linda palangga,</p>
+                            <p>Eu não vou fingir que a distância é fácil ou que não sinto um aperto no peito toda vez que nos despedimos em uma chamada de vídeo. Olhar o fuso horário e saber que enquanto eu estou no meio do dia você já está se preparando para descansar mexe comigo. Ver que existe um mapa gigante e milhares de quilômetros de oceano nos separando poderia assustar qualquer um.</p>
+                            <p>Mas sabe por que nada disso me faz vacilar nem por um segundo? Porque a intensidade do que a gente construiu é infinitamente maior do que qualquer distância física. Quando eu escuto a sua voz, quando você me manda uma foto sorrindo ou quando você me chama de "gwapo", parece que você está do meu lado, me olhando nos olhos.</p>
+                            <p>Eu sei que você ainda está começando a me ensinar sobre a sua terra, sobre o seu idioma e sobre o seu mundo em Masbate. E eu tenho um orgulho imenso de cada pequena coisa que você compartilha comigo. Eu não tenho pressa de nada, porque aprender com você — passo a passo, palavra por palavra — é a matéria mais bonita da minha vida.</p>
                             <div class="signature">
-                                Sempre pensando em você,<br>
+                                Sempre seu aluno curioso,<br>
                                 Kaynan ❤️
-                                <span>— Cruzando oceanos por você</span>
+                                <span>— Cruzando qualquer fuso horário por você</span>
                             </div>
                         </div>
 
                         <!-- PÁGINA 3 -->
                         <div class="carta-page" data-page="2">
-                            <span class="carta-badge-tag">Carta 03 • Coisas Secretas que Eu Adoro em Você</span>
-                            <p class="dear">Minha razão dos melhores sorrisos,</p>
-                            <p>Eu guardo pequenos segredos sobre você que talvez nem você mesma note:</p>
-                            <p>• O jeito doce e paciente como você me ensina palavras em Minasbate, repetindo com calma até eu acertar a pronúncia.<br>
-                            • A paixão que brilha nos seus olhos quando você fala sobre a sua vocação de ensinar.<br>
-                            • A sua risada espontânea nas chamadas que tem o poder mágico de resetar qualquer dia cansativo meu.<br>
-                            • O seu coração protetor e de muita fé, que ora por nós e me faz querer ser um homem melhor a cada dia.</p>
-                            <p>Você é perfeita nos detalhes que ninguém mais vê.</p>
+                            <span class="carta-badge-tag">Página 03 • Os Detalhes Silenciosos que Eu Amo em Você</span>
+                            <p class="dear">Minha doce professora,</p>
+                            <p>Existem coisas em você que talvez ninguém mais note na correria do dia a dia, mas que para mim são as mais preciosas do universo.</p>
+                            <p>Eu amo ver o brilho de orgulho nos seus olhos quando você fala sobre as suas aulas e sobre os seus alunos. Ver a sua vocação em ação é uma das coisas mais inspiradoras que já presenciei. Eu amo a sua fé genuína, o jeito como você coloca Deus à frente dos nossos planos e como suas orações me trazem uma paz que eu nunca havia sentido antes.</p>
+                            <p>Eu amo a sua delicadeza quando você percebe que eu estou tentando aprender algo novo sobre a sua cultura. E amo ainda mais a certeza de saber que por trás dessa mulher linda, inteligente e dedicada existe alguém com um coração puro, que escolheu caminhar comigo. Ter você não é sorte: é a resposta das minhas orações.</p>
                             <div class="signature">
-                                Seu admirador número 1,<br>
+                                Apaixonado por cada detalhe seu,<br>
                                 Kaynan Monteiro ❤️
-                                <span>— Eterno aluno da Profa. Hannah</span>
+                                <span>— Seu eterno admirador</span>
                             </div>
                         </div>
 
                         <!-- PÁGINA 4 -->
                         <div class="carta-page" data-page="3">
-                            <span class="carta-badge-tag">Carta 04 • Promessa para o Futuro</span>
+                            <span class="carta-badge-tag">Página 04 • O Nosso Futuro e a Promessa</span>
                             <p class="dear">Minha futura Sra. Monteiro,</p>
-                            <p>Esses 6 meses são apenas a introdução do nosso livro. O sumário de uma história muito longa que ainda vamos viver juntos lado a lado.</p>
-                            <p>Eu te prometo continuar me dedicando a você, respeitando os seus sonhos, aprendendo sua cultura e dividindo cada vitória com você. Prometo que no dia em que nos encontrarmos, eu vou te dar o abraço mais demorado da história deste planeta.</p>
-                            <p>Obrigado por ter entrado na minha vida e ter transformado meu mundo. Palangga ko ikaw, hoje, amanhã e em todos os próximos capítulos da nossa eternidade.</p>
+                            <p>Esses nossos primeiros 6 meses foram a melhor introdução que a nossa história poderia ter tido. Mas eu quero que você saiba que este site, este plano de aula e estas páginas não são um ponto final. São apenas o primeiro capítulo de um livro que vamos escrever juntos por décadas.</p>
+                            <p>Eu prometo a você que vou continuar estudando cada detalhe seu, aprendendo com você, cuidando do seu coração e respeitando cada sonho seu. Eu prometo que o dia do nosso primeiro abraço pessoalmente será o dia mais feliz da minha vida — e que a partir dele, a distância vai ser apenas uma lembrança de como fomos fortes.</p>
+                            <p>Obrigado por ser essa mulher extraordinária. Obrigado por ser a professora da minha vida. Palangga ko ikaw hoje, amanhã e em todos os capítulos da nossa eternidade.</p>
                             <div class="signature">
-                                Para sempre seu,<br>
-                                Kaynan ❤️
+                                Para sempre o seu aluno e seu amor,<br>
+                                Kaynan Monteiro ❤️
                                 <span>— Até depois do infinito</span>
                             </div>
                         </div>
 
-                        <!-- PAGINAÇÃO INTERATIVA / FOLHEAR -->
-                        <div class="book-pagination">
-                            <button class="btn-page" id="btn-prev-page" onclick="prevLetterPage()" disabled>
-                                <span>←</span> Anterior
-                            </button>
-                            <div class="page-dots" id="book-page-dots">
-                                <span class="page-dot active" onclick="goToLetterPage(0)"></span>
-                                <span class="page-dot" onclick="goToLetterPage(1)"></span>
-                                <span class="page-dot" onclick="goToLetterPage(2)"></span>
-                                <span class="page-dot" onclick="goToLetterPage(3)"></span>
+                        <!-- Rodapé do Livro com atalhos de virar folha -->
+                        <div class="book-turn-footer">
+                            <span class="turn-hint-link prev-link disabled" id="footer-prev-link" onclick="turnBookPage(-1)">
+                                ⮜ Folhear para trás
+                            </span>
+                            <div class="book-bullets" id="book-bullets-container">
+                                <span class="book-bullet active" onclick="jumpToPage(0)"></span>
+                                <span class="book-bullet" onclick="jumpToPage(1)"></span>
+                                <span class="book-bullet" onclick="jumpToPage(2)"></span>
+                                <span class="book-bullet" onclick="jumpToPage(3)"></span>
                             </div>
-                            <button class="btn-page" id="btn-next-page" onclick="nextLetterPage()">
-                                Próxima <span>→</span>
-                            </button>
+                            <span class="turn-hint-link next-link" id="footer-next-link" onclick="turnBookPage(1)">
+                                Folhear para frente ⮞
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -2345,9 +2407,10 @@
             }
         }
 
-        // ──── SALA DA DIRETORA: CADEADO & LIVRO DE CARTAS ────
+        // ──── SALA DA DIRETORA: CADEADO & LIVRO FOLHEÁVEL ────
         let currentLetterPage = 0;
         const totalLetterPages = 4;
+        let lastDirection = 1;
 
         function unlockLetters() {
             const lockIcon = document.getElementById('lock-icon-el');
@@ -2357,7 +2420,8 @@
             setTimeout(() => {
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('book-screen').style.display = 'block';
-                updateLetterBookView();
+                currentLetterPage = 0;
+                updateLetterBookView(1);
                 celebrationBurst();
                 document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 600);
@@ -2371,59 +2435,118 @@
             lockIcon.textContent = '🔒';
             lockIcon.style.transform = 'scale(1) rotate(0deg)';
             currentLetterPage = 0;
-            updateLetterBookView();
             document.getElementById('diretora').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function updateLetterBookView() {
+        function updateLetterBookView(direction) {
             const pages = document.querySelectorAll('.carta-page');
-            const dots = document.querySelectorAll('.page-dot');
+            const bullets = document.querySelectorAll('.book-bullet');
             const counter = document.getElementById('page-counter');
-            const prevBtn = document.getElementById('btn-prev-page');
-            const nextBtn = document.getElementById('btn-next-page');
+            const leftCurl = document.getElementById('curl-left-btn');
+            const rightCurl = document.getElementById('curl-right-btn');
+            const footerPrev = document.getElementById('footer-prev-link');
+            const footerNext = document.getElementById('footer-next-link');
 
             pages.forEach((page, idx) => {
+                page.classList.remove('active-page', 'turning-back');
                 if (idx === currentLetterPage) {
-                    page.classList.add('active-page');
-                } else {
-                    page.classList.remove('active-page');
+                    if (direction >= 0) {
+                        page.classList.add('active-page');
+                    } else {
+                        page.classList.add('turning-back');
+                    }
                 }
             });
 
-            dots.forEach((dot, idx) => {
+            bullets.forEach((bullet, idx) => {
                 if (idx === currentLetterPage) {
-                    dot.classList.add('active');
+                    bullet.classList.add('active');
                 } else {
-                    dot.classList.remove('active');
+                    bullet.classList.remove('active');
                 }
             });
 
             if (counter) {
-                counter.textContent = `Carta ${currentLetterPage + 1} de ${totalLetterPages}`;
+                counter.textContent = `📖 Página ${currentLetterPage + 1} de ${totalLetterPages}`;
             }
 
-            if (prevBtn) prevBtn.disabled = (currentLetterPage === 0);
-            if (nextBtn) nextBtn.disabled = (currentLetterPage === totalLetterPages - 1);
-        }
+            // Ativa/desativa abas laterais
+            if (leftCurl) {
+                if (currentLetterPage === 0) {
+                    leftCurl.classList.add('disabled');
+                } else {
+                    leftCurl.classList.remove('disabled');
+                }
+            }
 
-        function nextLetterPage() {
-            if (currentLetterPage < totalLetterPages - 1) {
-                currentLetterPage++;
-                updateLetterBookView();
+            if (rightCurl) {
+                if (currentLetterPage === totalLetterPages - 1) {
+                    rightCurl.classList.add('disabled');
+                } else {
+                    rightCurl.classList.remove('disabled');
+                }
+            }
+
+            // Ativa/desativa links do rodapé
+            if (footerPrev) {
+                if (currentLetterPage === 0) {
+                    footerPrev.classList.add('disabled');
+                } else {
+                    footerPrev.classList.remove('disabled');
+                }
+            }
+
+            if (footerNext) {
+                if (currentLetterPage === totalLetterPages - 1) {
+                    footerNext.classList.add('disabled');
+                } else {
+                    footerNext.classList.remove('disabled');
+                }
             }
         }
 
-        function prevLetterPage() {
-            if (currentLetterPage > 0) {
-                currentLetterPage--;
-                updateLetterBookView();
+        function turnBookPage(step) {
+            const nextIdx = currentLetterPage + step;
+            if (nextIdx >= 0 && nextIdx < totalLetterPages) {
+                currentLetterPage = nextIdx;
+                updateLetterBookView(step);
             }
         }
 
-        function goToLetterPage(index) {
-            if (index >= 0 && index < totalLetterPages) {
+        function jumpToPage(index) {
+            if (index >= 0 && index < totalLetterPages && index !== currentLetterPage) {
+                const direction = index > currentLetterPage ? 1 : -1;
                 currentLetterPage = index;
-                updateLetterBookView();
+                updateLetterBookView(direction);
+            }
+        }
+
+        // Suporte a swipe no celular (deslizar dedo para folhear)
+        const bookElement = document.getElementById('realistic-book-el');
+        if (bookElement) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            bookElement.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            bookElement.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleBookSwipe();
+            }, { passive: true });
+
+            function handleBookSwipe() {
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 40) {
+                    if (diff < 0) {
+                        // Arrasta pra esquerda -> folhear pra frente
+                        turnBookPage(1);
+                    } else {
+                        // Arrasta pra direita -> folhear pra trás
+                        turnBookPage(-1);
+                    }
+                }
             }
         }
     </script>
